@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style
+        name="mySpinnerItemStyle"
+        parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+    <style
+        name="Divider"
+        parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style
+        name="Theme.DocTracerMobile.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style
+        name="Theme.DocTracerMobile.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style
+        name="Theme.DocTracerMobile.PopupOverlay"
+        parent="ThemeOverlay.AppCompat.Light" />
+</resources>

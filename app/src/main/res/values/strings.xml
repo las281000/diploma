@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name_title">DocTracer Mobile</string>
+    <string name="email_label">Электронная почта</string>
+    <string name="password_label">Пароль</string>
+    <string name="signIn_label">Войти</string>
+    <string name="com_reg_title">Регистрация компании</string>
+    <string name="recovery_label">Восстановить доступ</string>
+
+    <string name="com_type_label">Тип организации (ОПФ)</string>
+    <string name="com_name_label">Название организации</string>
+    <string name="com_country_label">Страна регистрации</string>
+    <string name="com_INN_label">ИНН</string>
+    <string name="com_OGRN_label">ОГРН</string>
+    <string name="com_address_label">Юридический адрес</string>
+
+    <string name="next_label">Далее</string>
+
+    <string-array name="com_types">
+        <item>ООО</item>
+        <item>ОАО</item>
+        <item>ЗАО</item>
+        <item>ПАО</item>
+        <item>НАО</item>
+        <item>ИП</item>
+        <item>КФХ</item>
+        <item>НКО</item>
+        <item>Другое</item>
+    </string-array>
+
+    <string name="head_reg_title">Учетная запись руководителя</string>
+    <string name="staff_name_label">Имя</string>
+    <string name="staff_surname_label">Фамилия</string>
+    <string name="staff_patron_label">Отчество</string>
+    <string name="staff_position_label">Должность</string>
+    <string name="staff_phone_label">Телефон</string>
+    <string name="staff_email_label">Электронная почта</string>
+    <string name="staff_password_label">Пароль</string>
+    <string name="staff_password_label_d">Подтвердите пароль</string>
+
+    <string name="reg_last_step_title">Завершение регистрации</string>
+    <string name="confirmation_label">Подтвердите адрес электронный почты. Мы хотели бы убедиться, что вы указали верный адрес. На указанную почту было отправлено письмо, пожалуйста проверьте почтовый ящик. </string>
+    <string name="conf_code_label">Код подтверждения</string>
+    <string name="reg_finish">Завершить регистрацию</string>
+
+    <string name="recovery_title">Восстановление учетной записи</string>
+    <string name="explain_label">Для восстановления доступа к Вашей учетной записи, пожалуйста, укажите в поле ниже адрес электронной почты, к которому была привязана ваша учетная запись (адрес, который Вы указали при регистрации).</string>
+
+    <string name="title_activity_lk_profile">LK_Profile</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_profile">Профиль</string>
+    <string name="menu_staff">Мои сотрудники</string>
+    <string name="menu_sent_tasks">Назначенные мной задачи</string>
+    <string name="menu_received_tasks">Назначенные мне задачи</string>
+    <string name="menu_additional">Дополнительно</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_info">О программе</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="info">Hello blank fragment</string>
+
+    <string name="theme_settings">Темы</string>
+    <string name="text_settings">Шрифт</string>
+    <string name="notif_settings">Уведомления</string>
+    <string name="exit">ВЫЙТИ ИЗ АККАУНТА</string>
+
+    <string name="light_theme_theme">Светлая тема</string>
+    <string name="dark_theme_label">Темная тема</string>
+    <string name="black_white_theme_label">Черно-белая тема</string>
+
+    <string name="small_text">Мелкий</string>
+    <string name="normal_text">Средний</string>
+    <string name="big_text">Крупный</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="profile_org_name">Организация</string>
+    <string name="profile_org_country">Страна</string>
+    <string name="profile_org_address">Адрес</string>
+    <string name="profile_org_inn">ИНН</string>
+    <string name="profile_org_ogrn">ОГРН</string>
+
+    <string name="change_user_data">Изменить данные</string>
+    <string name="new_password_label">Новый пароль</string>
+    <string name="old_password_require">Введите текущий пароль, чтобы продолжить.</string>
+</resources>

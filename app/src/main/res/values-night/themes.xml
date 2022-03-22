@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style
+        name="Theme.DocTracerMobile"
+        parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/light_purple</item>
+        <item name="colorPrimaryDark">@color/dark_purple</item>
+        <item name="colorAccent">@color/pale_purple</item>
+
+    </style>
+</resources>

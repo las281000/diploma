@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            android:background="@color/white">
+                <TextView
+                    style="@style/Divider"
+                    android:text="@string/theme_settings"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/set_radio_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/light_theme_theme"
+                            android:checked="true"/>
+                        <RadioButton
+                            android:id="@+id/set_radio_dark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dark_theme_label"/>
+                        <RadioButton
+                            android:id="@+id/set_radio_bw"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/black_white_theme_label"/>
+                </RadioGroup>
+
+        <!-- ################################################################## -->
+
+                <TextView
+                    style="@style/Divider"
+                    android:text="@string/text_settings"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/set_radio_small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/small_text" />
+                        <RadioButton
+                            android:id="@+id/set_radio_normal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/normal_text"
+                            android:checked="true"/>
+                        <RadioButton
+                            android:id="@+id/set_radio_big"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/big_text"/>
+                </RadioGroup>
+        </LinearLayout>
+
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:id="@+id/set_butt_exit"
+            android:background="@color/red"
+            android:text="@string/exit"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:onClick="onClick_exit"/>
+
+</LinearLayout>

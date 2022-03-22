@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:padding="10dp"
+    tools:context=".presentation.fragment.ProfileFragment"
+    android:stretchColumns="2">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:gravity="left">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="50dp"
+            android:layout_marginRight="40dp">
+            <ImageView
+                android:id="@+id/bar_profile_photo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/nav_header_desc"
+                app:srcCompat="@mipmap/ic_launcher_round" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_gravity="left"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/profile_text_surname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_purple"
+                android:layout_weight="0.25"
+                android:gravity="center_vertical"
+                android:text="@string/staff_surname_label"/>
+
+            <TextView
+                android:id="@+id/profile_text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_purple"
+                android:layout_weight="0.25"
+                android:gravity="center_vertical"
+                android:text="@string/staff_name_label"/>
+
+            <TextView
+                android:id="@+id/profile_text_patronum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_purple"
+                android:layout_weight="0.25"
+                android:gravity="center_vertical"
+                android:text="@string/staff_patron_label"/>
+
+            <TextView
+                android:id="@+id/profile_text_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple"
+                android:layout_weight="0.25"
+                android:gravity="center_vertical"
+                android:text="@string/staff_position_label"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/profile_text_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey"
+                android:layout_weight="0.25"
+                android:gravity="center_vertical"
+                android:textStyle="italic"
+                android:text="@string/staff_phone_label"/>
+
+            <TextView
+                android:id="@+id/profile_text_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey"
+                android:layout_weight="0.25"
+                android:gravity="center_vertical"
+                android:textStyle="italic"
+                android:text="@string/staff_email_label"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+
+            <Button
+                android:id="@+id/profile_but_change"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:onClick="onClick_changeData"
+                android:background="@drawable/ic_baseline_edit_24" />
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow>
+        <View android:layout_marginVertical="20dp"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="@color/grey"
+            android:layout_span="3"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginVertical="5dp">
+        <TextView
+            android:text="@string/profile_org_name"
+            android:textColor="@color/grey"/>
+
+        <TextView
+            android:layout_span="2"
+            android:id="@+id/profile_org_name"
+            android:textColor="@color/dark_purple"
+            android:text="---"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginVertical="5dp">
+        <TextView
+            android:text="@string/profile_org_country"
+            android:textColor="@color/grey"/>
+
+        <TextView
+            android:layout_span="2"
+            android:id="@+id/profile_org_country"
+            android:textColor="@color/dark_purple"
+            android:text="---"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginVertical="5dp">
+        <TextView
+            android:text="@string/profile_org_address"
+            android:textColor="@color/grey" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:id="@+id/profile_org_address"
+            android:textColor="@color/dark_purple"
+            android:text="---"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginVertical="5dp">
+        <TextView
+            android:text="@string/profile_org_inn"
+            android:textColor="@color/grey"/>
+
+        <TextView
+            android:layout_span="2"
+            android:id="@+id/profile_org_inn"
+            android:textColor="@color/grey"
+            android:text="---"
+            android:textStyle="italic"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginVertical="5dp">
+        <TextView
+            android:text="@string/profile_org_ogrn"
+            android:textColor="@color/grey" />
+
+        <TextView
+            android:layout_span="2"
+            android:id="@+id/profile_org_ogrn"
+            android:textColor="@color/grey"
+            android:textStyle="italic"
+            android:text="---" />
+    </TableRow>
+
+</TableLayout>

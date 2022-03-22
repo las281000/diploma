@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_account"
+            android:title="@string/menu_profile" />
+        <item
+            android:id="@+id/nav_staff"
+            android:icon="@drawable/ic_menu_staff"
+            android:title="@string/menu_staff"/>
+        <item
+            android:id="@+id/nav_sent"
+            android:icon="@drawable/ic_menu_sent"
+            android:title="@string/menu_sent_tasks"/>
+        <item
+            android:id="@+id/nav_received"
+            android:icon="@drawable/ic_menu_received"
+            android:title="@string/menu_received_tasks"/>
+
+        <item
+            android:title="@string/menu_additional">
+            <menu>
+                <item
+                    android:id="@+id/nav_settings"
+                    android:icon="@drawable/ic_menu_settings"
+                    android:title="@string/menu_settings"/>
+                <item
+                    android:id="@+id/nav_info"
+                    android:icon="@drawable/ic_menu_info"
+                    android:title="@string/menu_info"/>
+            </menu>
+        </item>
+    </group>
+
+</menu>

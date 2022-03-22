@@ -1,0 +1,2 @@
+rootProject.name = "DocTracer Mobile"
+include ':app'
