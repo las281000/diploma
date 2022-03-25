@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragment.UserRegistrationFragment">
+
+    <TableLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_user_edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/staff_name_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_user_edit_surname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/staff_surname_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_user_edit_patronum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/staff_patron_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_user_edit_position"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/staff_position_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_user_edit_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:text="+7"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_user_edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/staff_email_label"
+                android:inputType="textEmailAddress"
+                android:paddingRight="70dp"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <!-->#############################################################</-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:id="@+id/reg_user_edit_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/staff_password_label"
+                    android:inputType="textPassword"
+                    android:textColor="@color/purple"
+                    android:textColorHint="@color/pale_purple" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reg_user_edit_pass_d"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/staff_password_label_d"
+                    android:inputType="textPassword"
+                    android:textColor="@color/purple"
+                    android:textColorHint="@color/pale_purple" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/reg_user_but_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/oval"
+                android:text="@string/next_label"
+                android:textColor="@color/white" />
+        </TableRow>
+
+    </TableLayout>
+
+</FrameLayout>

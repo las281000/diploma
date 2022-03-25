@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragment.OrgRegistrationFragment">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <Spinner
+                android:id="@+id/reg_org_spin_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:entries="@array/com_types"
+                android:prompt="@string/com_type_label"
+                android:spinnerMode="dialog"
+                android:theme="@style/mySpinnerItemStyle" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_org_edit_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/com_type_label"
+                android:inputType="text"
+                android:paddingEnd="50dp"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/green_additional" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_org_edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/com_name_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_org_edit_country"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/com_country_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_org_edit_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/com_address_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_org_edit_inn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/com_INN_label"
+                android:inputType="number"
+                android:maxLength="12"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_org_edit_ogrn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/com_OGRN_label"
+                android:inputType="number"
+                android:maxLength="13"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/reg_org_but_next"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/oval"
+                android:text="@string/next_label"
+                android:textColor="@color/white" />
+        </TableRow>
+
+    </TableLayout>
+</FrameLayout>

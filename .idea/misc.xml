@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_account_recovery.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_com_registration.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_confirm_email.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_head_registration.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_access_edit.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_com_registration_form.xml" value="0.1585144927536232" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_email_confirmation.xml" value="0.1585144927536232" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_entry.xml" value="0.1585144927536232" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_org_registration.xml" value="0.1585144927536232" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_recovery.xml" value="0.1585144927536232" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_user_registration.xml" value="0.1585144927536232" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_user_registration_form.xml" value="0.1308876811594203" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

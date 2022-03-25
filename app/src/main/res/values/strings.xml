@@ -77,8 +77,6 @@
     <string name="normal_text">Средний</string>
     <string name="big_text">Крупный</string>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="profile_org_name">Организация</string>

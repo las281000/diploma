@@ -99,7 +99,7 @@ public class OrgRegistrationActivity extends AppCompatActivity {
         }
 
         //Проверка ИНН
-        String check = CompanyDataValidator.innCheck(inn, lStatus);
+        String check = CompanyDataValidator.innCheck(inn, type);
         if (check != null) {
             Snackbar.make(editType, check, Snackbar.LENGTH_LONG).show();
             return;

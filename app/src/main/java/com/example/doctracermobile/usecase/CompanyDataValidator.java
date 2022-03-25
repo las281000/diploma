@@ -8,17 +8,14 @@ public class CompanyDataValidator extends AbstractValidator {
     public static final int LE = 1;
 
     //Проверка длины ИНН
-    public static String innCheck(String inn, int lSatus) {
+    public static String innCheck(String inn, String legalForm) {
         int length; //выбираем длину ИНН
-        switch (lSatus) {
-            case PE:
+        switch (legalForm) {
+            case "ИП":
                 length = 12;
                 break;
-            case LE:
-                length = 10;
-                break;
             default:
-                length = 0;
+                length = 10;
         }
 
         String regEx = "[1234567890]{" + String.valueOf(length) + "}"; //только length цифр

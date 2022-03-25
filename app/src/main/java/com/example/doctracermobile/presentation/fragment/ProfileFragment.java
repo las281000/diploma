@@ -87,6 +87,7 @@ public class ProfileFragment extends Fragment {
                 .setText(user.getEmail());
 
         Company company = (Company) this.getActivity().getIntent().getSerializableExtra("company");
+
         ((TextView) getView()
                 .findViewById(R.id.profile_org_name))
                 .setText(String.format("%s \"%s\"",
