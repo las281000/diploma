@@ -1,4 +1,6 @@
-package com.example.doctracermobile.presentation;
+package com.example.doctracermobile.presentation.account;
+
+import static com.example.doctracermobile.util.Constants.APP_PREFERENCES;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +13,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
 import com.example.doctracermobile.R;
 import com.example.doctracermobile.databinding.ActivityProfileBinding;
 import com.example.doctracermobile.entity.User;
+import com.example.doctracermobile.presentation.start.StartActivity;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.UserClient;
 import com.example.doctracermobile.request.JointUserCompany;
@@ -21,19 +31,7 @@ import com.example.doctracermobile.request.UserForRequest;
 import com.example.doctracermobile.usecase.UserDataValidator;
 import com.example.doctracermobile.util.Constants;
 import com.google.android.material.navigation.NavigationView;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.snackbar.Snackbar;
-
-import static com.example.doctracermobile.util.Constants.APP_PREFERENCES;
-import static com.example.doctracermobile.util.Constants.APP_PREFERENCES_PASSWORD;
 
 public class ProfileActivity extends AppCompatActivity {
 

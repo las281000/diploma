@@ -1,17 +1,16 @@
-package com.example.doctracermobile.presentation.fragment;
+package com.example.doctracermobile.presentation.account;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
 import com.example.doctracermobile.entity.User;
@@ -51,8 +50,6 @@ public class EditDataFragment extends Fragment {
             user = (User) getArguments().getSerializable("user");
             Log.e("GETTING_ARGUMENT", user.toString());
         }
-
-
     }
 
     @Override

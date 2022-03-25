@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="top"
     android:padding="10dp"
-    tools:context=".presentation.fragment.ProfileFragment"
+    tools:context=".presentation.account.ProfileFragment"
     android:stretchColumns="2">
 
     <TableRow

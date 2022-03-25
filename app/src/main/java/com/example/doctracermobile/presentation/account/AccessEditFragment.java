@@ -1,22 +1,13 @@
-package com.example.doctracermobile.presentation.fragment;
+package com.example.doctracermobile.presentation.account;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
-import com.example.doctracermobile.repository.Preferences;
-import com.example.doctracermobile.util.Constants;
-import com.google.android.material.snackbar.Snackbar;
-
-import static com.example.doctracermobile.util.Constants.APP_PREFERENCES;
 
 public class AccessEditFragment extends Fragment {
 

@@ -1,10 +1,10 @@
 package com.example.doctracermobile;
 
+import com.example.doctracermobile.usecase.CompanyDataValidator;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.example.doctracermobile.usecase.CompanyDataValidator;
 
 public class CompanyDataValidatorTest {
     private String v8;
@@ -44,7 +44,7 @@ public class CompanyDataValidatorTest {
 
 
 //////////////////////////////////// PE Tests (12 signs) \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    @Test
+    /*@Test
     public void shortINN_PE(){ //короткий
         Assert.assertEquals(inn12Reply, CompanyDataValidator.innCheck(v10, CompanyDataValidator.PE));
     }
@@ -90,7 +90,7 @@ public class CompanyDataValidatorTest {
     @Test
     public void letOGRN(){ //
         Assert.assertEquals(ogrnReply, CompanyDataValidator.ogrnCheck(ogrnLet));
-    }
+    }*/
 
 //////////////////////////////// CAPITAL LETTER TEST \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 

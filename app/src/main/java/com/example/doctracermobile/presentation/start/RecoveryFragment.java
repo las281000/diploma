@@ -1,16 +1,15 @@
-package com.example.doctracermobile.presentation.fragment;
+package com.example.doctracermobile.presentation.start;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
 
@@ -24,6 +23,15 @@ public class RecoveryFragment extends Fragment {
     private String mParam2;
 
     private Button buttRecover;
+
+    private final View.OnClickListener recoverListener = (v) -> {
+        //Добываем адрес почты из поля ввода
+        String email = ((EditText) getView().findViewById(R.id.recover_edit_email))
+                .getText()
+                .toString();
+
+        //TODO дописать приватный класс для отправки на сервер и код в UserClint?
+    };
 
     public RecoveryFragment() {
         // Required empty public constructor
@@ -59,18 +67,6 @@ public class RecoveryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         buttRecover = (Button) getView().findViewById(R.id.confirm_butt_finish);
-        buttRecover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Добываем адрес почты из поля ввода
-                String email = ((EditText) getView().findViewById(R.id.recover_edit_email))
-                        .getText()
-                        .toString();
-
-                //TODO дописать приватный класс для отправки на сервер и код в UserClint?
-
-
-            }
-        });
+        buttRecover.setOnClickListener(recoverListener);
     }
 }

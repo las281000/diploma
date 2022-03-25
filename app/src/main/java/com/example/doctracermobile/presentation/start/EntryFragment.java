@@ -1,4 +1,4 @@
-package com.example.doctracermobile.presentation.fragment;
+package com.example.doctracermobile.presentation.start;
 
 import static com.example.doctracermobile.util.Constants.APP_PREFERENCES;
 
@@ -7,22 +7,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.doctracermobile.R;
 import com.example.doctracermobile.entity.Company;
 import com.example.doctracermobile.entity.User;
-import com.example.doctracermobile.presentation.ProfileActivity;
-import com.example.doctracermobile.presentation.StartActivity;
+import com.example.doctracermobile.presentation.account.ProfileActivity;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.UserClient;
 import com.example.doctracermobile.request.JointUserCompany;
@@ -36,11 +34,40 @@ public class EntryFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    
+
     SharedPreferences preferences;
     Button buttSingIn; //кнопка входа
     Button buttSignUp; //кнопка регистрации
     Button buttRecovery; //кнопка восстановления пароля
+
+    private final View.OnClickListener signInListener = (v) -> {
+        //Получение логина и пароля из полей ввода
+        String login = ((EditText) getView().findViewById(R.id.entry_edit_login))
+                .getText()
+                .toString();
+        String password = ((EditText) getView().findViewById(R.id.entry_edit_password))
+                .getText()
+                .toString();
+        if ((login.equals("") || password.equals(""))) {
+            Snackbar.make(buttSingIn, "Введите логин и пароль", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+        if (UserDataValidator.passwordCheck(password) != null) {
+            Snackbar.make(buttSingIn, UserDataValidator.passwordCheck(password), Snackbar.LENGTH_LONG);
+            return;
+        }
+        //Отправака запроса
+        new SignInTask(login, password).execute();
+    };
+
+    private final View.OnClickListener signUpListener = (v) -> {
+        OrgRegistrationFragment fragment = new OrgRegistrationFragment();
+        //TODO написать переход к фрагементу регистрации
+    };
+
+    private final View.OnClickListener recoverListener = (v) -> {
+
+    };
 
     public EntryFragment() {
         // Required empty public constructor
@@ -86,49 +113,13 @@ public class EntryFragment extends Fragment {
         }
 
         buttSingIn = (Button) getView().findViewById(R.id.entry_butt_signIn);
-        buttSingIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Получение логина и пароля из полей ввода
-                String login = ((EditText) getView().findViewById(R.id.entry_edit_login))
-                        .getText()
-                        .toString();
-                String password = ((EditText) getView().findViewById(R.id.entry_edit_password))
-                        .getText()
-                        .toString();
-
-                if ((login.equals("") || password.equals(""))) {
-                    Snackbar.make(buttSingIn, "Введите логин и пароль", Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                if (UserDataValidator.passwordCheck(password) != null) {
-                    Snackbar.make(buttSingIn, UserDataValidator.passwordCheck(password), Snackbar.LENGTH_LONG);
-                    return;
-                }
-
-                //Отправака запроса
-                new SignInTask(login, password).execute();
-            }
-        });
+        buttSingIn.setOnClickListener(signInListener);
 
         buttSignUp = (Button) getView().findViewById(R.id.entry_butt_signUp);
-        buttSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OrgRegistrationFragment fragment = new OrgRegistrationFragment();
-                //TODO написать переход к фрагементу регистрации
-            }
-        });
-        
-        buttRecovery = (Button) getView().findViewById(R.id.entry_butt_recovery);
-        buttRecovery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO написать восстановление пароля
-            }
-        });
+        buttSignUp.setOnClickListener(signUpListener);
 
+        buttRecovery = (Button) getView().findViewById(R.id.entry_butt_recovery);
+        buttRecovery.setOnClickListener(recoverListener);
     }
 
     private class SignInTask extends AsyncTask<Void, Void, JointUserCompany> {
@@ -173,7 +164,7 @@ public class EntryFragment extends Fragment {
                 //Если авторизация прошла успешно заврешаем эту активность и переходим в профиль
                 Intent signIn = new Intent(getContext(), ProfileActivity.class);
                 signIn.putExtra("user", user); //передаем сериализованный объект
-                signIn.putExtra("company",company);
+                signIn.putExtra("company", company);
                 startActivity(signIn);
                 getActivity().finish();
             } else {

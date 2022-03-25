@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.doctracermobile.presentation.fragment.ProfileFragment"
+        android:name="com.example.doctracermobile.presentation.account.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -19,37 +19,37 @@
 
     <fragment
         android:id="@+id/nav_staff"
-        android:name="com.example.doctracermobile.presentation.fragment.staff.StaffFragment"
+        android:name="com.example.doctracermobile.presentation.account.StaffFragment"
         android:label="@string/menu_staff"
         tools:layout="@layout/fragment_staff" />
 
     <fragment
         android:id="@+id/nav_sent"
-        android:name="com.example.doctracermobile.presentation.fragment.sent.SentFragment"
+        android:name="com.example.doctracermobile.presentation.account.SentFragment"
         android:label="@string/menu_sent_tasks"
         tools:layout="@layout/fragment_sent" />
 
     <fragment
         android:id="@+id/nav_received"
-        android:name="com.example.doctracermobile.presentation.fragment.received.ReceivedFragment"
+        android:name="com.example.doctracermobile.presentation.account.ReceivedFragment"
         android:label="@string/menu_received_tasks"
         tools:layout="@layout/fragment_received" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.example.doctracermobile.presentation.fragment.SettingsFragment"
+        android:name="com.example.doctracermobile.presentation.account.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/nav_info"
-        android:name="com.example.doctracermobile.presentation.fragment.info.InfoFragment"
+        android:name="com.example.doctracermobile.presentation.account.InfoFragment"
         android:label="@string/menu_info"
         tools:layout="@layout/fragment_info" />
 
     <fragment
         android:id="@+id/nav_access_edit"
-        android:name="com.example.doctracermobile.presentation.fragment.AccessEditFragment"
+        android:name="com.example.doctracermobile.presentation.account.AccessEditFragment"
         tools:layout="@layout/fragment_access_edit">
         <action
             android:id="@+id/action_nav_access_edit_to_nav_edit_userData"
@@ -58,7 +58,7 @@
 
     <fragment
         android:id="@+id/nav_edit_userData"
-        android:name="com.example.doctracermobile.presentation.fragment.EditDataFragment"
+        android:name="com.example.doctracermobile.presentation.account.EditDataFragment"
         tools:layout="@layout/fragment_edit_data" >
         <action
             android:id="@+id/action_nav_edit_userData_to_nav_profile"

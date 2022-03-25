@@ -1,23 +1,18 @@
-package com.example.doctracermobile.presentation.fragment;
+package com.example.doctracermobile.presentation.start;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.doctracermobile.R;
-import com.example.doctracermobile.presentation.StartActivity;
-import com.example.doctracermobile.presentation.VerificationActivity;
 import com.example.doctracermobile.repository.UserClient;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -31,6 +26,15 @@ public class EmailConfirmationFragment extends Fragment {
     private String mParam2;
 
     private Button buttConfirm;
+
+    //Слушатель кнопки подстведжения почты
+    private final View.OnClickListener confirmListener = (v) -> {
+        String email = getArguments().getString("email");
+        String code = ((EditText) getView().findViewById(R.id.confirm_edit_code))
+                .getText()
+                .toString();
+        new ConfTask(code, email).execute();
+    };
 
     public EmailConfirmationFragment() {
         // Required empty public constructor
@@ -67,19 +71,7 @@ public class EmailConfirmationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         buttConfirm = (Button) getView().findViewById(R.id.confirm_butt_finish);
-        buttConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = getArguments().getString("email");
-
-                String code = ((EditText) getView().findViewById(R.id.confirm_edit_code))
-                        .getText()
-                        .toString();
-
-                new ConfTask(code, email).execute();
-            }
-        });
-
+        buttConfirm.setOnClickListener(confirmListener);
     }
 
     private class ConfTask extends AsyncTask<Void, Void, Boolean> {

@@ -1,10 +1,11 @@
-package com.example.doctracermobile.presentation.fragment.info;
+package com.example.doctracermobile.presentation.account;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
 

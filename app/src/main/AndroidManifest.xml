@@ -16,28 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DocTracerMobile">
         <activity
-            android:name=".presentation.ProfileActivity"
+            android:name=".presentation.account.ProfileActivity"
             android:label="@string/title_activity_lk_profile"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.DocTracerMobile.NoActionBar"/>
         <activity
-            android:name=".presentation.RecoveryActivity"
-            android:label="@string/recovery_title"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".presentation.VerificationActivity"
-            android:label="@string/reg_last_step_title"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".presentation.HeadRegistrationActivity"
-            android:label="@string/head_reg_title"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".presentation.OrgRegistrationActivity"
-            android:label="@string/com_reg_title"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".presentation.StartActivity"
+            android:name=".presentation.start.StartActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
