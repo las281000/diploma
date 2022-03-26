@@ -9,7 +9,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".presentation.account.AccessEditFragment"
+    tools:context=".presentation.account.AccessToUpdatingFragment"
     android:id="@+id/access_edit_fragment">
 
 

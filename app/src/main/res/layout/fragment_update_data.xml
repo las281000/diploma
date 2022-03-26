@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    tools:context=".presentation.account.EditDataFragment"
+    tools:context=".presentation.account.UpdateDataFragment"
     android:background="@color/white">
 
     <TableRow
@@ -16,7 +16,7 @@
         android:gravity="center">
 
         <EditText
-            android:id="@+id/change_edit_name"
+            android:id="@+id/update_edit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/staff_name_label"
@@ -32,7 +32,7 @@
         android:gravity="center">
 
         <EditText
-            android:id="@+id/change_edit_surname"
+            android:id="@+id/update_edit_surname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/staff_surname_label"
@@ -47,7 +47,7 @@
         android:gravity="center"
         android:layout_width="match_parent">
         <EditText
-            android:id="@+id/change_edit_patronum"
+            android:id="@+id/update_edit_patronum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/purple"
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_marginBottom="30dp">
         <EditText
-            android:id="@+id/change_edit_position"
+            android:id="@+id/update_edit_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/grey"
@@ -80,7 +80,7 @@
         android:gravity="center"
         android:layout_width="match_parent">
         <EditText
-            android:id="@+id/change_edit_phone"
+            android:id="@+id/update_edit_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/purple"
@@ -96,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_marginBottom="30dp">
         <EditText
-            android:id="@+id/change_edit_email"
+            android:id="@+id/update_edit_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/purple"
@@ -119,7 +119,7 @@
             app:passwordToggleEnabled="true"
             app:errorEnabled="true">
             <EditText
-                android:id="@+id/change_edit_pass"
+                android:id="@+id/update_edit_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/purple"
@@ -142,7 +142,7 @@
             app:passwordToggleEnabled="true"
             app:errorEnabled="true">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/change_edit_pass_d"
+                android:id="@+id/update_edit_pass_d"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/purple"
@@ -160,13 +160,12 @@
         android:gravity="center"
         android:layout_width="match_parent">
         <Button
-            android:id="@+id/reg_head_but_next"
+            android:id="@+id/update_butt_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/change_user_data"
             android:textColor="@color/white"
-            android:background="@drawable/oval"
-            android:onClick="onClick_update">
+            android:background="@drawable/oval">
         </Button>
     </TableRow>
 

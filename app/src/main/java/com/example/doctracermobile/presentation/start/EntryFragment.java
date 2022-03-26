@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.example.doctracermobile.R;
 import com.example.doctracermobile.entity.Company;
 import com.example.doctracermobile.entity.User;
-import com.example.doctracermobile.presentation.account.ProfileActivity;
+import com.example.doctracermobile.presentation.account.AccountActivity;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.UserClient;
 import com.example.doctracermobile.request.JointUserCompany;
@@ -165,7 +165,7 @@ public class EntryFragment extends Fragment {
                 Preferences.savePreferences(preferences, user.getEmail(), user.getPass());
 
                 //Если авторизация прошла успешно заврешаем эту активность и переходим в АКТИВНОСТЬ профиля
-                Intent signIn = new Intent(getContext(), ProfileActivity.class);
+                Intent signIn = new Intent(getContext(), AccountActivity.class);
                 signIn.putExtra("user", user); //передаем сериализованный объект
                 signIn.putExtra("company", company);
                 startActivity(signIn);

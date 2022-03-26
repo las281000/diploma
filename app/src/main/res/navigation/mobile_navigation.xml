@@ -14,7 +14,7 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_nav_profile_to_nav_access_edit"
-            app:destination="@id/nav_access_edit" />
+            app:destination="@id/nav_access_to_updating" />
     </fragment>
 
     <fragment
@@ -48,20 +48,20 @@
         tools:layout="@layout/fragment_info" />
 
     <fragment
-        android:id="@+id/nav_access_edit"
-        android:name="com.example.doctracermobile.presentation.account.AccessEditFragment"
-        tools:layout="@layout/fragment_access_edit">
+        android:id="@+id/nav_access_to_updating"
+        android:name="com.example.doctracermobile.presentation.account.AccessToUpdatingFragment"
+        tools:layout="@layout/fragment_access_to_updating">
         <action
-            android:id="@+id/action_nav_access_edit_to_nav_edit_userData"
-            app:destination="@id/nav_edit_userData" />
+            android:id="@+id/action_nav_accessing_to_nav_updating_userData"
+            app:destination="@id/nav_update_userData" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_edit_userData"
-        android:name="com.example.doctracermobile.presentation.account.EditDataFragment"
-        tools:layout="@layout/fragment_edit_data" >
+        android:id="@+id/nav_update_userData"
+        android:name="com.example.doctracermobile.presentation.account.UpdateDataFragment"
+        tools:layout="@layout/fragment_update_data" >
         <action
-            android:id="@+id/action_nav_edit_userData_to_nav_profile"
+            android:id="@+id/action_nav_updating_to_nav_profile"
             app:destination="@id/nav_profile" />
     </fragment>
 

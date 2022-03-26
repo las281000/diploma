@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DocTracerMobile">
         <activity
-            android:name=".presentation.account.ProfileActivity"
+            android:name=".presentation.account.AccountActivity"
             android:label="@string/title_activity_lk_profile"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.DocTracerMobile.NoActionBar"/>

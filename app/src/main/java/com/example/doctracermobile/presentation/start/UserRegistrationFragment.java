@@ -135,7 +135,7 @@ public class UserRegistrationFragment extends Fragment {
                             .getPhone()
                             .replaceAll(" ", "")
                             .replaceAll("-", ""));
-
+                    Company company = (Company) getArguments().getSerializable("company");
                     new RegTask(user, company).execute();
                 }
             }
@@ -161,11 +161,12 @@ public class UserRegistrationFragment extends Fragment {
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             if (result) {
-            /*Intent verification = new Intent(HeadRegistrationActivity.this, VerificationActivity.class);
-            verification.putExtra("email", user.getEmail());
-            startActivity(verification);*/
+                EmailConfirmationFragment fragment = new EmailConfirmationFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("email", user.getEmail());
+                //TODO написать переход к другому фрагменту
             } else {
-                /*Snackbar.make(editName, "Регистрация не удалась!", Snackbar.LENGTH_LONG).show();*/
+                Snackbar.make(confirmButton, "Регистрация не удалась!", Snackbar.LENGTH_LONG).show();
             }
         }
     }
