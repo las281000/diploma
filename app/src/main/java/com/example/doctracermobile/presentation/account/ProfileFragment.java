@@ -55,9 +55,8 @@ public class ProfileFragment extends Fragment {
             user = (User) getArguments().getSerializable("newUserData");
             Log.e("PROFILE", "Новые данные получены фрагментом");
         } else{
-            user = (User) this.getActivity().getIntent().getSerializableExtra("user");
+            user = (User) getActivity().getIntent().getSerializableExtra("user");
         }
-
 
         ((TextView) getView()
                 .findViewById(R.id.profile_text_surname))
@@ -83,7 +82,7 @@ public class ProfileFragment extends Fragment {
                 .findViewById(R.id.profile_text_email))
                 .setText(user.getEmail());
 
-        Company company = (Company) this.getActivity().getIntent().getSerializableExtra("company");
+        Company company = (Company) getActivity().getIntent().getSerializableExtra("company");
 
         ((TextView) getView()
                 .findViewById(R.id.profile_org_name))
