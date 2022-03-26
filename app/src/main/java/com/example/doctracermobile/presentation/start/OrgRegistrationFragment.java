@@ -31,6 +31,97 @@ public class OrgRegistrationFragment extends Fragment {
     private String selected = "";
     private Button buttNext;
 
+    //Обработчик нажатия на выпадающий список
+    private final AdapterView.OnItemSelectedListener typeListListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            String[] types = getResources().getStringArray(R.array.com_types);
+            selected = types[position];
+            //Если выбран вариант "Другое"
+            if (selected.contains("Другое")) {
+                editType.setVisibility(View.VISIBLE);
+            } else {
+                //если передумали и выбрали вариант, то надо спрятать доп.поле
+                editType.setVisibility(View.INVISIBLE);
+            }
+        }
+
+        //Еслиничего не выбрали, то по дефолту первый вариант из списка
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            selected = getResources().getStringArray(R.array.com_types)[0].toString();
+        }
+    };
+
+    //Получает данные организации из формы
+    private Company getCompanyFromForm() {
+        String type = spinType.getSelectedItem().toString();
+        if (type.equals("Другое")) {
+            type = editType.getText().toString();
+        }
+        String name = ((EditText) getView()
+                .findViewById(R.id.reg_org_edit_name))
+                .getText()
+                .toString();
+        String country = ((EditText) getView()
+                .findViewById(R.id.reg_org_edit_country))
+                .getText()
+                .toString();
+        String address = ((EditText) getView()
+                .findViewById(R.id.reg_org_edit_address))
+                .getText()
+                .toString();
+        String inn = ((EditText) getView()
+                .findViewById(R.id.reg_org_edit_inn))
+                .getText()
+                .toString();
+        String ogrn = ((EditText) getView()
+                .findViewById(R.id.reg_org_edit_ogrn))
+                .getText()
+                .toString();
+
+        return new Company(name, type, country, address, inn, ogrn);
+    }
+
+    private final View.OnClickListener nextButtListener = (v) -> {
+        Company company = getCompanyFromForm();
+
+        //Проверка пустых полей
+        if (company.emptyFieldsCheck()) {
+            Snackbar.make(v, "Заполните все поля!", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+        //Чтоб с заглавной буквы
+        if (!CompanyDataValidator.capitalLetterCheck(company.getName()) ||
+                !CompanyDataValidator.capitalLetterCheck(company.getCountry()) ||
+                !CompanyDataValidator.capitalLetterCheck(company.getAddress())) {
+            Snackbar.make(v, "Название, страна и адрес указываются с заглавной буквы.", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+        //Проверка ИНН
+        String check = CompanyDataValidator.innCheck(company.getInn(), company.getType());
+        if (check != null) {
+            Snackbar.make(editType, check, Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+        check = CompanyDataValidator.ogrnCheck(company.getOgrn());
+        if (check != null) {
+            Snackbar.make(editType, check, Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+        //Если данные организации корректны, переходим к фр. UserRegistrationFragment
+        UserRegistrationFragment fragment = new UserRegistrationFragment();
+        final Bundle args = new Bundle();
+        args.putSerializable("company", company);//передаем компанию следующему фрагменту
+        fragment.setArguments(args);
+        //TODO переход на UserRegistrationFragment
+
+    };
+
     public OrgRegistrationFragment() {
         // Required empty public constructor
     }
@@ -69,108 +160,13 @@ public class OrgRegistrationFragment extends Fragment {
         editType = getView().findViewById(R.id.reg_org_edit_type);
         editType.setVisibility(View.INVISIBLE);
 
+        //Назначение слушателя на выпадающий список
         spinType = getView().findViewById(R.id.reg_org_spin_type);
-        spinType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String[] types = getResources().getStringArray(R.array.com_types);
-                selected = types[position];
-                
-                //Если выбран вариант "Другое"
-                if (selected.contains("Другое")) { 
-                    editType.setVisibility(View.VISIBLE);
-                } else {
-                    //если передумали и выбрали вариант, то надо спрятать доп.поле
-                    editType.setVisibility(View.INVISIBLE);
-                }
-            }
-
-            //Еслиничего не выбрали, то по дефолту первый вариант из списка
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                selected = getResources().getStringArray(R.array.com_types)[0].toString();
-            }
-        });
+        spinType.setOnItemSelectedListener(typeListListener);
 
         //Логика кнопки (тут проверки полей и переход к следующему этапу регистрации)
         buttNext = (Button) getView().findViewById(R.id.reg_org_but_next);
-        buttNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //забираем тип организации
-                String type = spinType.getSelectedItem().toString();
-                if (type.equals("Другое")) {
-                    type = editType.getText().toString();
-                }
-
-                //собираем данные организации из полей
-                String name = ((EditText) getView()
-                        .findViewById(R.id.reg_org_edit_name))
-                        .getText()
-                        .toString();
-
-                String country = ((EditText) getView()
-                        .findViewById(R.id.reg_org_edit_country))
-                        .getText()
-                        .toString();
-
-                String address = ((EditText) getView()
-                        .findViewById(R.id.reg_org_edit_address))
-                        .getText()
-                        .toString();
-
-                String inn = ((EditText) getView()
-                        .findViewById(R.id.reg_org_edit_inn))
-                        .getText()
-                        .toString();
-
-                String ogrn = ((EditText) getView()
-                        .findViewById(R.id.reg_org_edit_ogrn))
-                        .getText()
-                        .toString();
-
-                //Проверка пустых полей
-                if (name.equals("") ||
-                        country.equals("") ||
-                        address.equals("") ||
-                        inn.equals("") ||
-                        ogrn.equals("") ||
-                        (spinType.getSelectedItem().toString().equals("Другое") && (type.equals("")))) {
-                    Snackbar.make(editType, "Заполните все поля!", Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                //Чтоб с заглавной буквы
-                if (!CompanyDataValidator.capitalLetterCheck(name) ||
-                        !CompanyDataValidator.capitalLetterCheck(country) ||
-                        !CompanyDataValidator.capitalLetterCheck(address)) {
-                    Snackbar.make(editType, "Название, страна и адрес указываются с заглавной буквы.", Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                //Проверка ИНН
-                String check = CompanyDataValidator.innCheck(inn, type);
-                if (check != null) {
-                    Snackbar.make(editType, check, Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                check = CompanyDataValidator.ogrnCheck(ogrn);
-                if (check != null) {
-                    Snackbar.make(editType, check, Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                //Если данные организации корректны, переходим к фр. UserRegistrationFragment
-                Company company = new Company(name, type, country, address, inn, ogrn);
-                UserRegistrationFragment fragment = new UserRegistrationFragment();
-                final Bundle args = new Bundle();
-                args.putSerializable("company", company);//передаем компанию следующему фрагменту
-                fragment.setArguments(args);
-
-                //TODO переход на UserRegistrationFragment
-            }
-        });
+        buttNext.setOnClickListener(nextButtListener);
 
     }
 }

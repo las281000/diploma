@@ -1,11 +1,6 @@
 package com.example.doctracermobile.entity;
 
-import com.example.doctracermobile.util.CustomAuthenticator;
-
 import java.io.Serializable;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 
 public class Company implements Serializable {
 
@@ -78,6 +73,18 @@ public class Company implements Serializable {
 
     public void setOgrn(String ogrn) {
         this.ogrn = ogrn;
+    }
+
+    public boolean emptyFieldsCheck(){
+        if (this.getName().equals("") ||
+                this.getType().equals("") ||
+                this.getCountry().equals("") ||
+                this.getAddress().equals("") ||
+                this.getInn().equals("") ||
+                this.getOgrn().equals("")){
+            return true;
+        }
+        return false;
     }
 
 }

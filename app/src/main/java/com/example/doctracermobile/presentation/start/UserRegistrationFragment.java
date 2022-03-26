@@ -34,6 +34,34 @@ public class UserRegistrationFragment extends Fragment {
         // Required empty public constructor
     }
 
+    //Получает данные пользователя из формы регистрации
+    private User getUserFromForm() {
+        String name = ((EditText) getView().findViewById(R.id.reg_user_edit_name))
+                .getText()
+                .toString();
+        String surname = ((EditText) getView().findViewById(R.id.reg_user_edit_surname))
+                .getText()
+                .toString();
+        String patronum = ((EditText) getView().findViewById(R.id.reg_user_edit_patronum))
+                .getText()
+                .toString();
+        String position = ((EditText) getView().findViewById(R.id.reg_user_edit_position))
+                .getText()
+                .toString();
+        String phone = ((EditText) getView().findViewById(R.id.reg_user_edit_phone))
+                .getText()
+                .toString();
+        String email = ((EditText) getView().findViewById(R.id.reg_user_edit_email))
+                .getText()
+                .toString();
+        String password = ((EditText) getView().findViewById(R.id.reg_user_edit_pass))
+                .getText()
+                .toString(); // строка из первого поля
+
+        return new User(name, surname, patronum, position, phone, email, password);
+    }
+
+
     public static UserRegistrationFragment newInstance(String param1, String param2) {
         UserRegistrationFragment fragment = new UserRegistrationFragment();
         Bundle args = new Bundle();
@@ -68,62 +96,47 @@ public class UserRegistrationFragment extends Fragment {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = ((EditText) getView().findViewById(R.id.reg_user_edit_name)).getText().toString();
-                String surname = ((EditText) getView().findViewById(R.id.reg_user_edit_surname)).getText().toString();
-                String patronum = ((EditText) getView().findViewById(R.id.reg_user_edit_patronum)).getText().toString();
-                String position = ((EditText) getView().findViewById(R.id.reg_user_edit_position)).getText().toString();
-
-                String phone = ((EditText) getView().findViewById(R.id.reg_user_edit_phone)).getText().toString();
-                String email = ((EditText) getView().findViewById(R.id.reg_user_edit_email)).getText().toString();
-
-                String password = ((EditText) getView().findViewById(R.id.reg_user_edit_pass)).getText().toString(); // строка из первого поля
-                String password_d = ((EditText) getView().findViewById(R.id.reg_user_edit_pass_d)).getText().toString(); // строка из второго поля
+                User user = getUserFromForm();
+                String password_d = ((EditText) getView().findViewById(R.id.reg_user_edit_pass_d))
+                        .getText()
+                        .toString();
 
                 //Проверка пустых полей
-                if (name.equals("") ||
-                        surname.equals("") ||
-                        patronum.equals("") ||
-                        position.equals("") ||
-                        phone.equals("+7") ||
-                        phone.equals("") ||
-                        email.equals("") ||
-                        password.equals("") ||
-                        password_d.equals("")) {
+                if (user.emptyFieldCheck() && password_d.equals("")) {
                     Snackbar.make(v, "Заполните все поля!", Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
-                if (!UserDataValidator.capitalLetterCheck(name) ||
-                        !UserDataValidator.capitalLetterCheck(surname) ||
-                        !UserDataValidator.capitalLetterCheck(patronum) ||
-                        !UserDataValidator.capitalLetterCheck(position)) {
+                // Проврека заглавных букв
+                if (!UserDataValidator.capitalLetterCheck(user.getName()) ||
+                        !UserDataValidator.capitalLetterCheck(user.getSurname()) ||
+                        !UserDataValidator.capitalLetterCheck(user.getPatronum()) ||
+                        !UserDataValidator.capitalLetterCheck(user.getPosition())) {
                     Snackbar.make(v, "Введите ФИО и должность с заглавной буквы!", Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
-                //сюда будем класть ответы валидатора
-                String validatorReply;
-                validatorReply = UserDataValidator.phoneCheck(phone);
-                if (validatorReply != null) { //если к строке есть замечания
+                String validatorReply; //сюда будем класть ответы валидатора
+                validatorReply = UserDataValidator.phoneCheck(user.getPhone()); //Проверка телефона
+                if (validatorReply != null) {
+                    Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+                validatorReply = UserDataValidator.passwordCheck(user.getPass()); //Валиддация пароля
+                if (validatorReply != null) {
                     Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
-                validatorReply = UserDataValidator.passwordCheck(password);
-                if (validatorReply != null) { //если к строке есть замечания
-                    Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                //если введены разные строки
-                if (!password.equals(password_d)) {
+                if (!user.getPass().equals(password_d)) {//если введены разные строки
                     Snackbar.make(v, "Пароли не совпадают!", Snackbar.LENGTH_LONG).show();
-                } else { //если введены одинаковые строки
-                    /*Company company = (Company) this.getIntent().getSerializableExtra("company");
-                    phone = phone.replaceAll(" ", "").replaceAll("-", "");
-                    User user = new User(name, surname, patronum, position, phone, email, password);
+                } else {
+                    user.setPosition(user
+                            .getPhone()
+                            .replaceAll(" ", "")
+                            .replaceAll("-", ""));
 
-                    new RegTask(user, company).execute();*/
+                    new RegTask(user, company).execute();
                 }
             }
         });

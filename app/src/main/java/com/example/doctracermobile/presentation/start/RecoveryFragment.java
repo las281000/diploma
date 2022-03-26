@@ -29,7 +29,6 @@ public class RecoveryFragment extends Fragment {
         String email = ((EditText) getView().findViewById(R.id.recover_edit_email))
                 .getText()
                 .toString();
-
         //TODO дописать приватный класс для отправки на сервер и код в UserClint?
     };
 

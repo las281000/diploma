@@ -40,6 +40,7 @@ public class EntryFragment extends Fragment {
     Button buttSignUp; //кнопка регистрации
     Button buttRecovery; //кнопка восстановления пароля
 
+    //Слушатель кнопки авторизации
     private final View.OnClickListener signInListener = (v) -> {
         //Получение логина и пароля из полей ввода
         String login = ((EditText) getView().findViewById(R.id.entry_edit_login))
@@ -49,24 +50,26 @@ public class EntryFragment extends Fragment {
                 .getText()
                 .toString();
         if ((login.equals("") || password.equals(""))) {
-            Snackbar.make(buttSingIn, "Введите логин и пароль", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(v, "Введите логин и пароль", Snackbar.LENGTH_LONG).show();
             return;
         }
         if (UserDataValidator.passwordCheck(password) != null) {
-            Snackbar.make(buttSingIn, UserDataValidator.passwordCheck(password), Snackbar.LENGTH_LONG);
+            Snackbar.make(v, UserDataValidator.passwordCheck(password), Snackbar.LENGTH_LONG);
             return;
         }
         //Отправака запроса
         new SignInTask(login, password).execute();
     };
 
+    //Слушатель кнопкии регистрации
     private final View.OnClickListener signUpListener = (v) -> {
         OrgRegistrationFragment fragment = new OrgRegistrationFragment();
         //TODO написать переход к фрагементу регистрации
     };
 
+    //Слушатель кнокпи восстановления
     private final View.OnClickListener recoverListener = (v) -> {
-
+        //TODO написать восстановление
     };
 
     public EntryFragment() {
@@ -161,7 +164,7 @@ public class EntryFragment extends Fragment {
 
                 Preferences.savePreferences(preferences, user.getEmail(), user.getPass());
 
-                //Если авторизация прошла успешно заврешаем эту активность и переходим в профиль
+                //Если авторизация прошла успешно заврешаем эту активность и переходим в АКТИВНОСТЬ профиля
                 Intent signIn = new Intent(getContext(), ProfileActivity.class);
                 signIn.putExtra("user", user); //передаем сериализованный объект
                 signIn.putExtra("company", company);

@@ -86,4 +86,18 @@ public class User implements Serializable {
                 ", pass='" + pass + '\'' +
                 '}';
     }
+
+   public boolean emptyFieldCheck(){
+        if (this.getName().equals("") ||
+                this.getSurname().equals("") ||
+                this.getPatronum().equals("") ||
+                this.getPosition().equals("") ||
+                this.getPhone().equals("+7") ||
+                this.getPhone().equals("") ||
+                this.getEmail().equals("") ||
+                this.getPass().equals("")) {
+            return true;
+        }
+        return false;
+    }
 }
