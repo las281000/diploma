@@ -106,12 +106,12 @@ public class AccountActivity extends AppCompatActivity {
 
     //Переход на фрагмент доступа к изменению данных (Кнопка в ProfileFragment)
     public void onClick_changeData(View view) {
-        navController.navigate(R.id.action_nav_profile_to_nav_access_edit);
+
     }
 
     //Проверка действующего пароля и переход на фрагмент изменения данных
     public void onClick_getAccess(View view) {
-        EditText passwordEdit = (EditText) findViewById(R.id.change_edit_check);
+        EditText passwordEdit = (EditText) findViewById(R.id.access_edit_password);
         String password = passwordEdit.getText().toString();
         String controlPass = Preferences.getPassword(getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE));
 

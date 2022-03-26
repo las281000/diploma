@@ -39,7 +39,7 @@
             app:passwordToggleEnabled="true">
 
             <EditText
-                android:id="@+id/change_edit_check"
+                android:id="@+id/access_edit_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/staff_password_label"
@@ -55,13 +55,12 @@
         android:layout_gravity="center"
         android:gravity="center">
         <Button
-            android:id="@+id/reg_head_but_next"
+            android:id="@+id/access_butt_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/next_label"
             android:textColor="@color/white"
-            android:background="@drawable/oval"
-            android:onClick="onClick_getAccess"/>
+            android:background="@drawable/oval"/>
     </TableRow>
 
 
