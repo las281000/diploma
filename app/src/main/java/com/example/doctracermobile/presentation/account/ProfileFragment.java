@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,16 @@ public class ProfileFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private User user;
+    private Button accessButt;
+
+    private View.OnClickListener accessButtListener = (v) -> {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user",user);
+
+        ((AccountActivity) getActivity())
+                .getNavController()
+                .navigate(R.id.action_nav_profile_to_nav_access_edit);
+    };
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -50,6 +61,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        accessButt = getView().findViewById(R.id.profile_but_change);
+        accessButt.setOnClickListener(accessButtListener);
 
         if (getArguments() != null){
             user = (User) getArguments().getSerializable("newUserData");

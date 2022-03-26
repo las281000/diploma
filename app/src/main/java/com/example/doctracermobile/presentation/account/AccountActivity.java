@@ -6,10 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +22,6 @@ import com.example.doctracermobile.databinding.ActivityAccountBinding;
 import com.example.doctracermobile.entity.User;
 import com.example.doctracermobile.presentation.start.StartActivity;
 import com.example.doctracermobile.repository.Preferences;
-import com.example.doctracermobile.util.Constants;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -102,30 +99,6 @@ public class AccountActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    ////////////////////////////// КНОПЫ ФРАГМЕНТОВ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    //Переход на фрагмент доступа к изменению данных (Кнопка в ProfileFragment)
-    public void onClick_changeData(View view) {
-        navController.navigate(R.id.action_nav_profile_to_nav_access_edit);
-    }
-
-    //Проверка действующего пароля и переход на фрагмент изменения данных
-    public void onClick_getAccess(View view) {
-        EditText passwordEdit = (EditText) findViewById(R.id.access_edit_password);
-        String password = passwordEdit.getText().toString();
-        String controlPass = Preferences.getPassword(getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE));
-
-        Log.e("GET_ACCESS", controlPass);
-        if (!password.equals(controlPass)) {
-            Log.e("ACCESS_TO_EDITING", "Пароль не верный.");
-            Snackbar.make(passwordEdit, "Неверный пароль!", Snackbar.LENGTH_LONG).show();
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("user", user);
-            navController.navigate(R.id.action_nav_accessing_to_nav_updating_userData, bundle);
-        }
-
-    }
 
     public void onClick_exit(View view){
        preferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
