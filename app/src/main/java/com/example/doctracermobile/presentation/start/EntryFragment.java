@@ -63,13 +63,16 @@ public class EntryFragment extends Fragment {
 
     //Слушатель кнопкии регистрации
     private final View.OnClickListener signUpListener = (v) -> {
-        OrgRegistrationFragment fragment = new OrgRegistrationFragment();
-        //TODO написать переход к фрагементу регистрации
+        ((StartActivity) getActivity())
+                .getNavController()
+                .navigate(R.id.action_entryFragment_to_orgRegistrationFragment);
     };
 
     //Слушатель кнокпи восстановления
     private final View.OnClickListener recoverListener = (v) -> {
-        //TODO написать восстановление
+        ((StartActivity) getActivity())
+                .getNavController()
+                .navigate(R.id.action_entryFragment_to_recoveryFragment);
     };
 
     public EntryFragment() {

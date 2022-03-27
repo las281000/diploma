@@ -36,7 +36,7 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(binding.getRoot()); //получаем корневой элемент разметки
 
         //делаем из бара ЭкшнБар (для отображения заголовков)
-        setSupportActionBar(binding.appBarLkProfile.toolbar);
+        setSupportActionBar(binding.appBarAccount.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;// достаем разметку шторки
         NavigationView navigationView = binding.navView; // достаем меню для навигации

@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_account.xml" value="0.17844202898550723" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_account_recovery.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_com_registration.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_confirm_email.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_head_registration.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_start.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/app_bar_lk_profile.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/content_lk_profile.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_access_edit.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_access_to_updating.xml" value="0.16168478260869565" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_com_registration_form.xml" value="0.1585144927536232" />
@@ -21,6 +25,7 @@
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_update_data.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_user_registration.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_user_registration_form.xml" value="0.1308876811594203" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/nav_header_lk_profile.xml" value="0.1" />
       </map>
     </option>
   </component>

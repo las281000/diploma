@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/start_navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_navigation"
+    app:startDestination="@id/entryFragment">
 
+    <fragment
+        android:id="@+id/entryFragment"
+        android:name="com.example.doctracermobile.presentation.start.EntryFragment"
+        android:label="fragment_entry"
+        tools:layout="@layout/fragment_entry" >
+        <action
+            android:id="@+id/action_entryFragment_to_orgRegistrationFragment"
+            app:destination="@id/orgRegistrationFragment" />
+        <action
+            android:id="@+id/action_entryFragment_to_recoveryFragment"
+            app:destination="@id/recoveryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailConfirmationFragment"
+        android:name="com.example.doctracermobile.presentation.start.EmailConfirmationFragment"
+        android:label="fragment_email_confirmation"
+        tools:layout="@layout/fragment_email_confirmation" >
+        <action
+            android:id="@+id/action_emailConfirmationFragment_to_entryFragment"
+            app:destination="@id/entryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orgRegistrationFragment"
+        android:name="com.example.doctracermobile.presentation.start.OrgRegistrationFragment"
+        android:label="fragment_org_registration"
+        tools:layout="@layout/fragment_org_registration" >
+        <action
+            android:id="@+id/action_orgRegistrationFragment_to_userRegistrationFragment"
+            app:destination="@id/userRegistrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recoveryFragment"
+        android:name="com.example.doctracermobile.presentation.start.RecoveryFragment"
+        android:label="fragment_recovery"
+        tools:layout="@layout/fragment_recovery" >
+        <action
+            android:id="@+id/action_recoveryFragment_to_entryFragment"
+            app:destination="@id/entryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRegistrationFragment"
+        android:name="com.example.doctracermobile.presentation.start.UserRegistrationFragment"
+        android:label="fragment_user_registration"
+        tools:layout="@layout/fragment_user_registration" >
+        <action
+            android:id="@+id/action_userRegistrationFragment_to_emailConfirmationFragment"
+            app:destination="@id/emailConfirmationFragment" />
+    </fragment>
 </navigation>

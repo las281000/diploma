@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_lk_profile">
+    tools:showIn="@layout/app_bar_account">
 
     <!-- NavHostFragment - для загрузки фрагментов (пунктов назначения навигации) -->
     <!-- Сюда мы будем загружать нужные фрагменты -->
