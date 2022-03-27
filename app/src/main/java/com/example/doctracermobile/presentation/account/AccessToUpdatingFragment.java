@@ -1,7 +1,5 @@
 package com.example.doctracermobile.presentation.account;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
 import com.example.doctracermobile.entity.User;
-import com.example.doctracermobile.repository.Preferences;
-import com.example.doctracermobile.util.Constants;
 import com.google.android.material.snackbar.Snackbar;
 
 public class AccessToUpdatingFragment extends Fragment {
@@ -32,12 +28,10 @@ public class AccessToUpdatingFragment extends Fragment {
     private  final View.OnClickListener nextButtListener = (v) -> {
         String password = ((EditText) getView().findViewById(R.id.access_edit_password)).getText().toString();
 
-        SharedPreferences preferences = getActivity().getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
-        String controlPass = Preferences.getPassword(preferences);
-
-        if (!password.equals(controlPass)) {
+        if (!password.equals(user.getPass())) {
             Snackbar.make(v, "Неверный пароль!", Snackbar.LENGTH_LONG).show();
         } else {
+            //если введен верный пароль, передаем в след. фрагмент данные пользователя
             Bundle bundle = new Bundle();
             bundle.putSerializable("user",user );
             ((AccountActivity)getActivity())
@@ -78,9 +72,8 @@ public class AccessToUpdatingFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // установка слушателя кнопки "Далее" для перехода к изменению данных
         nextButt = getView().findViewById(R.id.access_butt_next);
         nextButt.setOnClickListener(nextButtListener);
     }
-
-
 }

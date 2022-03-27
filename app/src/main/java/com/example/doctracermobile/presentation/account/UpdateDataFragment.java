@@ -4,7 +4,6 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.doctracermobile.util.Constants.APP_PREFERENCES;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -32,13 +31,59 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class UpdateDataFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+/*    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";*/
 
     private EditText phoneEdit;
-    private User oldData; // для текущих данных
-    private User newData; // для новых данных
+    private User oldUserData; // для текущих данных
+    private User newUserData; // для новых данных
+
     private Button updateButton;
+    private final View.OnClickListener editButtListener = (v) -> {
+        newUserData = getUserFromForm(); //получение новых данных из формы
+        String password_d = ((EditText) getView().findViewById(R.id.update_edit_pass_d)) //поле поддтверждения пароля
+                .getText()
+                .toString();
+
+        if (newUserData.emptyFieldCheck() || password_d.equals("")) { //Проверка пустых полей
+            Snackbar.make(v, "Заполните все поля!", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+        //Проверка заглавных букв
+        if (!capitalLetterCheck(newUserData)) {
+            Snackbar.make(v, "Введите ФИО и должность с заглавной буквы!", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+        //Проверка формы номера телефона
+        String validatorReply;
+        validatorReply = UserDataValidator.phoneCheck(newUserData.getPhone());
+        if (validatorReply != null) {
+            Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
+            return;
+        }
+        //Валидация пароля
+        validatorReply = UserDataValidator.passwordCheck(newUserData.getPass());
+        if (validatorReply != null) { //если к строке есть замечания
+            Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
+            return;
+        }
+        //Проверка совпадения паролей в полях
+        if (!newUserData.getPass().equals(password_d)) {
+            Snackbar.make(v, "Пароли не совпадают!", Snackbar.LENGTH_LONG).show();
+        } else {
+            newUserData.setPhone(newUserData.getPhone()
+                    .replaceAll(" ", "")
+                    .replaceAll("-", ""));
+            UserForRequest updatedUser = new UserForRequest(newUserData.getName(),
+                    newUserData.getSurname(),
+                    newUserData.getPatronum(),
+                    newUserData.getPosition(),
+                    newUserData.getPhone(),
+                    newUserData.getEmail(),
+                    newUserData.getPass());
+            new UpdateTask(oldUserData.getEmail(), oldUserData.getPass(), updatedUser).execute();
+        }
+    };
 
     public UpdateDataFragment() {
         // Required empty public constructor
@@ -81,67 +126,21 @@ public class UpdateDataFragment extends Fragment {
         return true;
     }
 
-    private final View.OnClickListener editButtListener = (v) -> {
-        newData = getUserFromForm(); //получение новых данных из формы
-        String password_d = ((EditText) getView().findViewById(R.id.update_edit_pass_d)) //поле поддтверждения пароля
-                .getText()
-                .toString();
-
-        if (newData.emptyFieldCheck() || password_d.equals("")) { //Проверка пустых полей
-            Snackbar.make(v, "Заполните все поля!", Snackbar.LENGTH_LONG).show();
-            return;
-        }
-        //Проверка заглавных букв
-        if (!capitalLetterCheck(newData)) {
-            Snackbar.make(v, "Введите ФИО и должность с заглавной буквы!", Snackbar.LENGTH_LONG).show();
-            return;
-        }
-        //Проверка формы номера телефона
-        String validatorReply;
-        validatorReply = UserDataValidator.phoneCheck(newData.getPhone());
-        if (validatorReply != null) {
-            Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
-            return;
-        }
-        //Валидация пароля
-        validatorReply = UserDataValidator.passwordCheck(newData.getPass());
-        if (validatorReply != null) { //если к строке есть замечания
-            Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
-            return;
-        }
-        //Проверка совпадения паролей в полях
-        if (!newData.getPass().equals(password_d)) {
-            Snackbar.make(v, "Пароли не совпадают!", Snackbar.LENGTH_LONG).show();
-        } else {
-            newData.setPhone(newData.getPhone()
-                    .replaceAll(" ", "")
-                    .replaceAll("-", ""));
-            UserForRequest updatedUser = new UserForRequest(newData.getName(),
-                    newData.getSurname(),
-                    newData.getPatronum(),
-                    newData.getPosition(),
-                    newData.getPhone(),
-                    newData.getEmail(),
-                    newData.getPass());
-            new UpdateTask(oldData.getEmail(), oldData.getPass(), updatedUser).execute();
-        }
-    };
-
-    public static UpdateDataFragment newInstance(String param1, String param2) {
+    /*public static UpdateDataFragment newInstance(String param1, String param2) {
         UpdateDataFragment fragment = new UpdateDataFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            oldData = (User) getArguments().getSerializable("user");
-            Log.e("GETTING_ARGUMENT", oldData.toString());
+            oldUserData = (User) getArguments().getSerializable("user");
+            Log.e("GETTING_ARGUMENT", oldUserData.toString());
         }
     }
 
@@ -160,15 +159,16 @@ public class UpdateDataFragment extends Fragment {
         phoneEdit.addTextChangedListener(new PhoneNumberFormattingTextWatcher("RU"));
 
         //Автоматическое заполнение полей, чтобы не заполнять всю форму заново
-        ((EditText) rootView.findViewById(R.id.update_edit_name)).setText(oldData.getName());
-        ((EditText) rootView.findViewById(R.id.update_edit_surname)).setText(oldData.getSurname());
-        ((EditText) rootView.findViewById(R.id.update_edit_patronum)).setText(oldData.getPatronum());
-        ((EditText) rootView.findViewById(R.id.update_edit_position)).setText(oldData.getPosition());
-        phoneEdit.setText(oldData.getPhone());
-        ((EditText) rootView.findViewById(R.id.update_edit_email)).setText(oldData.getEmail());
-        ((EditText) rootView.findViewById(R.id.update_edit_pass)).setText(oldData.getPass());
-        ((EditText) rootView.findViewById(R.id.update_edit_pass_d)).setText(oldData.getPass());
+        ((EditText) rootView.findViewById(R.id.update_edit_name)).setText(oldUserData.getName());
+        ((EditText) rootView.findViewById(R.id.update_edit_surname)).setText(oldUserData.getSurname());
+        ((EditText) rootView.findViewById(R.id.update_edit_patronum)).setText(oldUserData.getPatronum());
+        ((EditText) rootView.findViewById(R.id.update_edit_position)).setText(oldUserData.getPosition());
+        phoneEdit.setText(oldUserData.getPhone());
+        ((EditText) rootView.findViewById(R.id.update_edit_email)).setText(oldUserData.getEmail());
+        ((EditText) rootView.findViewById(R.id.update_edit_pass)).setText(oldUserData.getPass());
+        ((EditText) rootView.findViewById(R.id.update_edit_pass_d)).setText(oldUserData.getPass());
 
+        //прослушка в кнопку
         updateButton = rootView.findViewById(R.id.update_butt_save);
         updateButton.setOnClickListener(editButtListener);
     }
@@ -208,11 +208,9 @@ public class UpdateDataFragment extends Fragment {
                     updatedUserCompany.getEmail(),
                     newUserData.getPassword());
 
-            SharedPreferences preferences = getActivity().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
             //Если пароль изменился, то выход из акка
-            if (!user.getPass().equals(Preferences.getPassword(preferences))) {
-                Preferences.removePassword(preferences);
-
+            if (!user.getPass().equals(oldPassword)) {
+                Preferences.removePassword(getActivity().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE));
                 startActivity(new Intent(getActivity(), StartActivity.class));
                 getActivity().finish();
             } else { //переход к профилю

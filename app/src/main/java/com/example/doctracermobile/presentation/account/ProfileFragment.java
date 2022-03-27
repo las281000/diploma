@@ -24,13 +24,14 @@ public class ProfileFragment extends Fragment {
     private User user;
     private Button accessButt;
 
+    //Обработчик кнопки обновления перс.данных (перекинет на страницу доступа)
     private View.OnClickListener accessButtListener = (v) -> {
         Bundle bundle = new Bundle();
         bundle.putSerializable("user",user);
 
         ((AccountActivity) getActivity())
                 .getNavController()
-                .navigate(R.id.action_nav_profile_to_nav_access_edit);
+                .navigate(R.id.action_nav_profile_to_nav_access_update, bundle);
     };
 
     public ProfileFragment() {
@@ -62,16 +63,18 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //установка слушателя на кнопку
         accessButt = getView().findViewById(R.id.profile_but_change);
         accessButt.setOnClickListener(accessButtListener);
 
-        if (getArguments() != null){
+        if (getArguments() != null){ //сработает если были изменены данные
             user = (User) getArguments().getSerializable("newUserData");
             Log.e("PROFILE", "Новые данные получены фрагментом");
-        } else{
+        } else{ // сработает если только вошли в акк
             user = (User) getActivity().getIntent().getSerializableExtra("user");
         }
 
+        //размазывание информации по экрану
         ((TextView) getView()
                 .findViewById(R.id.profile_text_surname))
                 .setText(user.getSurname());

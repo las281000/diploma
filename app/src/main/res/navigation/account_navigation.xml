@@ -13,7 +13,7 @@
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_nav_profile_to_nav_access_edit"
+            android:id="@+id/action_nav_profile_to_nav_access_update"
             app:destination="@id/nav_access_to_updating" />
     </fragment>
 

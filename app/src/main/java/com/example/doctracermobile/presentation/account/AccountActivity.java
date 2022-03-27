@@ -1,13 +1,6 @@
 package com.example.doctracermobile.presentation.account;
 
-import static com.example.doctracermobile.util.Constants.APP_PREFERENCES;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.doctracermobile.R;
 import com.example.doctracermobile.databinding.ActivityAccountBinding;
 import com.example.doctracermobile.entity.User;
-import com.example.doctracermobile.presentation.start.StartActivity;
-import com.example.doctracermobile.repository.Preferences;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -33,9 +23,8 @@ public class AccountActivity extends AppCompatActivity {
     private NavController navController;
     private User user;
 
-    SharedPreferences preferences;
 
-    public NavController getNavController(){
+    public NavController getNavController() {
         return navController;
     }
 
@@ -62,28 +51,23 @@ public class AccountActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)  //указываем на разметку меню
                 .build();  //собираем всю меню из пунктов и разметки
 
-        //класс управления навигацией (управление фрагементами)
-        //контроллер ассоциирован с хост-фрагментом
+        //класс управления навигацией (управление фрагементами), ассоциирован с хост-фрагментом
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_lk_profile);
 
-        /*установка компонента меню с обработчиком (сам выполняет навигацию к фрагменту с тем же id,
-        что и пункт меню)*/
+        /*установка меню с обработчиком (сам выполняет навигацию к фрагменту с тем же id, что и пункт меню)*/
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
         //ассоциируем View для меню и контроллер
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        //////////////////////////////////////////////////////////////////////////////////////
-        user = (User) this.getIntent().getSerializableExtra("user");
-
+        user = (User) getIntent().getSerializableExtra("user");
         ((TextView) navigationView.getHeaderView(0)
                 .findViewById(R.id.bar_profile_name))
                 .setText(String.format("%s %s %s",
                         user.getSurname(),
                         user.getName(),
                         user.getPatronum()));
-
         ((TextView) navigationView
                 .getHeaderView(0)
                 .findViewById(R.id.bar_profile_position))
@@ -98,18 +82,5 @@ public class AccountActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-
-    public void onClick_exit(View view){
-       preferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-       if (!Preferences.removePassword(preferences)){
-           Snackbar.make((Button) findViewById(R.id.set_butt_exit),
-                   "Не удалось удалить данные с устройства.",
-                   Snackbar.LENGTH_LONG);
-       } else{
-           startActivity(new Intent(AccountActivity.this, StartActivity.class));
-           finish();
-       }
-
-    }
 }
+
