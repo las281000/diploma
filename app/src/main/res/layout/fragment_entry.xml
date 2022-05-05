@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/oval"
-                android:paddingHorizontal="40dp"
+                android:paddingHorizontal="@dimen/butt_horizontal_padding"
                 android:text="@string/com_reg_title"
                 android:textColor="@color/white" />
         </TableRow>

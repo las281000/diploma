@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import ru.lanwen.verbalregex.VerbalExpression;
 
-public class UserDataValidator extends AbstractValidator{
+public class DataValidator {
 
     public static String passwordCheck(String password){
         String warning = "";
@@ -50,6 +50,13 @@ public class UserDataValidator extends AbstractValidator{
             return "Номер телефона должен иметь форму +7 XXX XXX-XX-XX";
         }
         else return null;
+    }
+
+    public static boolean capitalLetterCheck(String str){
+        if (Character.isUpperCase(str.charAt(0))){
+            return true;
+        }
+        else return false;
     }
 
 }

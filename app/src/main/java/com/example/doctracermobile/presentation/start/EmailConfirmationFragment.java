@@ -26,10 +26,10 @@ public class EmailConfirmationFragment extends Fragment {
     private String mParam2;
 
     private Button buttConfirm;
+    private String email;
 
     //Слушатель кнопки подстведжения почты
     private final View.OnClickListener confirmListener = (v) -> {
-        String email = getArguments().getString("email");
         String code = ((EditText) getView().findViewById(R.id.confirm_edit_code))
                 .getText()
                 .toString();
@@ -53,8 +53,9 @@ public class EmailConfirmationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            email = getArguments().getString("email");
+         /*   mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);*/
         }
     }
 
@@ -92,8 +93,9 @@ public class EmailConfirmationFragment extends Fragment {
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             if (result) {
-                EntryFragment fragment = new EntryFragment();
-                //TODO написать переход к другому фрагменту
+                ((StartActivity) getActivity())
+                        .getNavController()
+                        .navigate(R.id.action_emailConfirmationFragment_to_entryFragment);;
             } else {
                 Snackbar.make(buttConfirm, "Неверный код!", Snackbar.LENGTH_LONG).show();
             }

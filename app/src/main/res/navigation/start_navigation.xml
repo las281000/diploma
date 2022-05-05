@@ -28,9 +28,9 @@
     </fragment>
     <fragment
         android:id="@+id/orgRegistrationFragment"
-        android:name="com.example.doctracermobile.presentation.start.OrgRegistrationFragment"
+        android:name="com.example.doctracermobile.presentation.start.ProjRegistrationFragment"
         android:label="fragment_org_registration"
-        tools:layout="@layout/fragment_org_registration" >
+        tools:layout="@layout/fragment_project_registration" >
         <action
             android:id="@+id/action_orgRegistrationFragment_to_userRegistrationFragment"
             app:destination="@id/userRegistrationFragment" />

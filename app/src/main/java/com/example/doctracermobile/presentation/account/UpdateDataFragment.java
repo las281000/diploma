@@ -1,7 +1,7 @@
 package com.example.doctracermobile.presentation.account;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.doctracermobile.util.Constants.APP_PREFERENCES;
+import static com.example.doctracermobile.utile.Constants.APP_PREFERENCES;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -23,9 +23,9 @@ import com.example.doctracermobile.entity.User;
 import com.example.doctracermobile.presentation.start.StartActivity;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.UserClient;
-import com.example.doctracermobile.request.JointUserCompany;
+import com.example.doctracermobile.request.JointUserProject;
 import com.example.doctracermobile.request.UserForRequest;
-import com.example.doctracermobile.usecase.UserDataValidator;
+import com.example.doctracermobile.usecase.DataValidator;
 import com.google.android.material.snackbar.Snackbar;
 
 
@@ -56,13 +56,13 @@ public class UpdateDataFragment extends Fragment {
         }
         //Проверка формы номера телефона
         String validatorReply;
-        validatorReply = UserDataValidator.phoneCheck(newUserData.getPhone());
+        validatorReply = DataValidator.phoneCheck(newUserData.getPhone());
         if (validatorReply != null) {
             Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
             return;
         }
         //Валидация пароля
-        validatorReply = UserDataValidator.passwordCheck(newUserData.getPass());
+        validatorReply = DataValidator.passwordCheck(newUserData.getPass());
         if (validatorReply != null) { //если к строке есть замечания
             Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
             return;
@@ -117,10 +117,10 @@ public class UpdateDataFragment extends Fragment {
     }
 
     private boolean capitalLetterCheck(User user) {
-        if (!UserDataValidator.capitalLetterCheck(user.getName()) ||
-                !UserDataValidator.capitalLetterCheck(user.getSurname()) ||
-                !UserDataValidator.capitalLetterCheck(user.getPatronum()) ||
-                !UserDataValidator.capitalLetterCheck(user.getPosition())) {
+        if (!DataValidator.capitalLetterCheck(user.getName()) ||
+                !DataValidator.capitalLetterCheck(user.getSurname()) ||
+                !DataValidator.capitalLetterCheck(user.getPatronum()) ||
+                !DataValidator.capitalLetterCheck(user.getPosition())) {
             return false;
         }
         return true;
@@ -173,7 +173,7 @@ public class UpdateDataFragment extends Fragment {
         updateButton.setOnClickListener(editButtListener);
     }
 
-    private class UpdateTask extends AsyncTask<Void, Void, JointUserCompany> {
+    private class UpdateTask extends AsyncTask<Void, Void, JointUserProject> {
         private final String oldEmail; //текущий логин
         private final String oldPassword; //текущий пароль
         private UserForRequest newUserData; //новын данные
@@ -185,13 +185,13 @@ public class UpdateDataFragment extends Fragment {
         }
 
         @Override
-        protected JointUserCompany doInBackground(Void... voids) {
-            JointUserCompany updatedUserCompany = UserClient.update(oldEmail, oldPassword, newUserData);
+        protected JointUserProject doInBackground(Void... voids) {
+            JointUserProject updatedUserCompany = UserClient.update(oldEmail, oldPassword, newUserData);
             return updatedUserCompany;
         }
 
         @Override
-        protected void onPostExecute(JointUserCompany updatedUserCompany) {
+        protected void onPostExecute(JointUserProject updatedUserCompany) {
             super.onPostExecute(updatedUserCompany);
 
             if (updatedUserCompany == null) {

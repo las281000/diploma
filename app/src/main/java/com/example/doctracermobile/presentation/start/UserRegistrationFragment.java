@@ -13,10 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
-import com.example.doctracermobile.entity.Company;
+import com.example.doctracermobile.entity.Project;
 import com.example.doctracermobile.entity.User;
-import com.example.doctracermobile.repository.CompanyClient;
-import com.example.doctracermobile.usecase.UserDataValidator;
+import com.example.doctracermobile.repository.ProjectClient;
+import com.example.doctracermobile.usecase.DataValidator;
 import com.google.android.material.snackbar.Snackbar;
 
 
@@ -27,6 +27,9 @@ public class UserRegistrationFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+    private Project project;
+    private User user;
 
     private Button confirmButton;
 
@@ -61,6 +64,50 @@ public class UserRegistrationFragment extends Fragment {
         return new User(name, surname, patronum, position, phone, email, password);
     }
 
+    private final View.OnClickListener confirmButtListener = (v) -> {
+        user = getUserFromForm();
+        String password_d = ((EditText) getView().findViewById(R.id.reg_user_edit_pass_d))
+                .getText()
+                .toString();
+
+        //Проверка пустых полей
+        if (user.emptyFieldCheck() && password_d.equals("")) {
+            Snackbar.make(v, "Заполните все поля!", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+        // Проврека заглавных букв
+        if (!DataValidator.capitalLetterCheck(user.getName()) ||
+                !DataValidator.capitalLetterCheck(user.getSurname()) ||
+                !DataValidator.capitalLetterCheck(user.getPatronum()) ||
+                !DataValidator.capitalLetterCheck(user.getPosition())) {
+            Snackbar.make(v, "Введите ФИО и должность с заглавной буквы!", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+        String validatorReply; //сюда будем класть ответы валидатора
+        validatorReply = DataValidator.phoneCheck(user.getPhone()); //Проверка телефона
+        if (validatorReply != null) {
+            Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
+            return;
+        }
+        validatorReply = DataValidator.passwordCheck(user.getPass()); //Валиддация пароля
+        if (validatorReply != null) {
+            Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!user.getPass().equals(password_d)) {//если введены разные строки
+            Snackbar.make(v, "Пароли не совпадают!", Snackbar.LENGTH_LONG).show();
+        } else {
+            user.setPhone(user
+                    .getPhone()
+                    .replaceAll(" ", "")
+                    .replaceAll("-", ""));
+
+            new RegTask(user, project).execute();
+        }
+    };
 
     public static UserRegistrationFragment newInstance(String param1, String param2) {
         UserRegistrationFragment fragment = new UserRegistrationFragment();
@@ -75,8 +122,8 @@ public class UserRegistrationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            //получение объекта проекта из прошлого фрагмента
+            project = (Project) getArguments().getSerializable("project");
         }
     }
 
@@ -90,81 +137,36 @@ public class UserRegistrationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String title = getActivity().getResources().getString(R.string.manager_reg_fragment_title);
+        ((StartActivity)getActivity()).setTitle(title);
 
         confirmButton = (Button) getView().findViewById(R.id.reg_user_but_confirm);
-
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                User user = getUserFromForm();
-                String password_d = ((EditText) getView().findViewById(R.id.reg_user_edit_pass_d))
-                        .getText()
-                        .toString();
-
-                //Проверка пустых полей
-                if (user.emptyFieldCheck() && password_d.equals("")) {
-                    Snackbar.make(v, "Заполните все поля!", Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                // Проврека заглавных букв
-                if (!UserDataValidator.capitalLetterCheck(user.getName()) ||
-                        !UserDataValidator.capitalLetterCheck(user.getSurname()) ||
-                        !UserDataValidator.capitalLetterCheck(user.getPatronum()) ||
-                        !UserDataValidator.capitalLetterCheck(user.getPosition())) {
-                    Snackbar.make(v, "Введите ФИО и должность с заглавной буквы!", Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                String validatorReply; //сюда будем класть ответы валидатора
-                validatorReply = UserDataValidator.phoneCheck(user.getPhone()); //Проверка телефона
-                if (validatorReply != null) {
-                    Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-                validatorReply = UserDataValidator.passwordCheck(user.getPass()); //Валиддация пароля
-                if (validatorReply != null) {
-                    Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                if (!user.getPass().equals(password_d)) {//если введены разные строки
-                    Snackbar.make(v, "Пароли не совпадают!", Snackbar.LENGTH_LONG).show();
-                } else {
-                    user.setPosition(user
-                            .getPhone()
-                            .replaceAll(" ", "")
-                            .replaceAll("-", ""));
-                    Company company = (Company) getArguments().getSerializable("company");
-                    new RegTask(user, company).execute();
-                }
-            }
-        });
-
+        confirmButton.setOnClickListener(confirmButtListener);
     }
 
     private class RegTask extends AsyncTask<Void, Void, Boolean> {
         private User user;
-        private Company company;
+        private Project project;
 
-        private RegTask(User user, Company company) {
+        private RegTask(User user, Project project) {
             this.user = user;
-            this.company = company;
+            this.project = project;
         }
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            return CompanyClient.register(company, user);
+            return ProjectClient.register(project, user);
         }
 
         @Override
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             if (result) {
-                EmailConfirmationFragment fragment = new EmailConfirmationFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("email", user.getEmail());
-                //TODO написать переход к другому фрагменту
+                ((StartActivity) getActivity())
+                        .getNavController()
+                        .navigate(R.id.action_userRegistrationFragment_to_emailConfirmationFragment,bundle);
             } else {
                 Snackbar.make(confirmButton, "Регистрация не удалась!", Snackbar.LENGTH_LONG).show();
             }

@@ -1,12 +1,8 @@
 package com.example.doctracermobile;
 
-import com.example.doctracermobile.usecase.CompanyDataValidator;
-
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
-public class CompanyDataValidatorTest {
+public class ProjectDataValidatorTest {
     private String v8;
     private String v10;
     private String v12;
@@ -93,7 +89,7 @@ public class CompanyDataValidatorTest {
     }*/
 
 //////////////////////////////// CAPITAL LETTER TEST \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+/*
     @Test
     public void noCapLetter(){
         Assert.assertEquals(false, CompanyDataValidator.capitalLetterCheck(name));
@@ -102,6 +98,6 @@ public class CompanyDataValidatorTest {
     @Test
     public void CapLetter(){
         Assert.assertEquals(true, CompanyDataValidator.capitalLetterCheck(nameCap));
-    }
+    }*/
 
 }

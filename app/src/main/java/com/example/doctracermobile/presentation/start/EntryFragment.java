@@ -1,6 +1,6 @@
 package com.example.doctracermobile.presentation.start;
 
-import static com.example.doctracermobile.util.Constants.APP_PREFERENCES;
+import static com.example.doctracermobile.utile.Constants.APP_PREFERENCES;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,22 +18,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
-import com.example.doctracermobile.entity.Company;
+import com.example.doctracermobile.entity.Project;
 import com.example.doctracermobile.entity.User;
 import com.example.doctracermobile.presentation.account.AccountActivity;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.UserClient;
-import com.example.doctracermobile.request.JointUserCompany;
-import com.example.doctracermobile.usecase.UserDataValidator;
+import com.example.doctracermobile.request.JointUserProject;
+import com.example.doctracermobile.usecase.DataValidator;
 import com.google.android.material.snackbar.Snackbar;
 
 public class EntryFragment extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
     SharedPreferences preferences;
     Button buttSingIn; //кнопка входа
@@ -53,8 +47,8 @@ public class EntryFragment extends Fragment {
             Snackbar.make(v, "Введите логин и пароль", Snackbar.LENGTH_LONG).show();
             return;
         }
-        if (UserDataValidator.passwordCheck(password) != null) {
-            Snackbar.make(v, UserDataValidator.passwordCheck(password), Snackbar.LENGTH_LONG);
+        if (DataValidator.passwordCheck(password) != null) {
+            Snackbar.make(v, DataValidator.passwordCheck(password), Snackbar.LENGTH_LONG);
             return;
         }
         //Отправака запроса
@@ -79,21 +73,11 @@ public class EntryFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static EntryFragment newInstance(String param1, String param2) {
-        EntryFragment fragment = new EntryFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -106,6 +90,8 @@ public class EntryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String title = getActivity().getResources().getString(R.string.app_name_title);
+        ((StartActivity)getActivity()).setTitle(title);
 
         //добываем сохраненный пароль и логин
         preferences = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
@@ -128,7 +114,7 @@ public class EntryFragment extends Fragment {
         buttRecovery.setOnClickListener(recoverListener);
     }
 
-    private class SignInTask extends AsyncTask<Void, Void, JointUserCompany> {
+    private class SignInTask extends AsyncTask<Void, Void, JointUserProject> {
 
         private final String email;
         private final String password;
@@ -139,38 +125,36 @@ public class EntryFragment extends Fragment {
         }
 
         @Override
-        protected JointUserCompany doInBackground(Void... voids) {
-            JointUserCompany jointUserCompany = UserClient.signIn(email, password);
-            return jointUserCompany;
+        protected JointUserProject doInBackground(Void... voids) {
+            JointUserProject jointUserProject = UserClient.signIn(email, password);
+            return jointUserProject;
         }
 
         @Override
-        protected void onPostExecute(JointUserCompany jointUserCompany) {
-            super.onPostExecute(jointUserCompany);
-            if (jointUserCompany != null) {
-                jointUserCompany.setPassword(password);
+        protected void onPostExecute(JointUserProject jointUserProject) {
+            super.onPostExecute(jointUserProject);
+            if (jointUserProject != null) {
+                jointUserProject.setPassword(password);
 
-                User user = new User(jointUserCompany.getName(),
-                        jointUserCompany.getSurname(),
-                        jointUserCompany.getPatronum(),
-                        jointUserCompany.getPosition(),
-                        jointUserCompany.getPhoneNumber(),
-                        jointUserCompany.getEmail(),
+                User user = new User(jointUserProject.getName(),
+                        jointUserProject.getSurname(),
+                        jointUserProject.getPatronum(),
+                        jointUserProject.getPosition(),
+                        jointUserProject.getPhoneNumber(),
+                        jointUserProject.getEmail(),
                         password);
 
-                Company company = new Company(jointUserCompany.getCompanyName(),
-                        jointUserCompany.getType(),
-                        jointUserCompany.getCountry(),
-                        jointUserCompany.getAddress(),
-                        jointUserCompany.getInn(),
-                        jointUserCompany.getOgrn());
+                Project project = new Project(jointUserProject.getProjectName(),
+                        jointUserProject.getDescription(),
+                        jointUserProject.getStartDate(),
+                        jointUserProject.getEndDate());
 
                 Preferences.savePreferences(preferences, user.getEmail(), user.getPass());
 
                 //Если авторизация прошла успешно заврешаем эту активность и переходим в АКТИВНОСТЬ профиля
                 Intent signIn = new Intent(getContext(), AccountActivity.class);
                 signIn.putExtra("user", user); //передаем сериализованный объект
-                signIn.putExtra("company", company);
+                signIn.putExtra("project", project);
                 startActivity(signIn);
                 getActivity().finish();
             } else {

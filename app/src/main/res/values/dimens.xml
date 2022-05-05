@@ -6,6 +6,8 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <dimen name= "butt_horizontal_padding">40dp</dimen>
+
     <dimen name="small_text">12sp</dimen>
     <dimen name="normal_text">15sp</dimen>
     <dimen name="big_text">18sp</dimen>

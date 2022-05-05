@@ -13,15 +13,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
-import com.example.doctracermobile.entity.Company;
+import com.example.doctracermobile.entity.Project;
 import com.example.doctracermobile.entity.User;
 
 public class ProfileFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     private User user;
+    private Project project;
     private Button accessButt;
 
     //Обработчик кнопки обновления перс.данных (перекинет на страницу доступа)
@@ -41,8 +39,6 @@ public class ProfileFragment extends Fragment {
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,6 +53,12 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
+    }
+
+    private int getDaysLeft(){
+        int daysLeft=0;
+
+        return daysLeft;
     }
 
     @Override
@@ -99,28 +101,26 @@ public class ProfileFragment extends Fragment {
                 .findViewById(R.id.profile_text_email))
                 .setText(user.getEmail());
 
-        Company company = (Company) getActivity().getIntent().getSerializableExtra("company");
+        project = (Project) getActivity().getIntent().getSerializableExtra("project");
 
         ((TextView) getView()
-                .findViewById(R.id.profile_org_name))
-                .setText(String.format("%s \"%s\"",
-                        company.getType(),
-                        company.getName()));
+                .findViewById(R.id.profile_proj_name))
+                .setText(project.getName());
 
         ((TextView) getView()
-                .findViewById(R.id.profile_org_country))
-                .setText(company.getCountry());
+                .findViewById(R.id.profile_proj_description))
+                .setText(project.getDescription());
 
         ((TextView) getView()
-                .findViewById(R.id.profile_org_address))
-                .setText(company.getAddress());
+                .findViewById(R.id.profile_proj_text_start))
+                .setText(project.getStartDate());
 
         ((TextView) getView()
-                .findViewById(R.id.profile_org_inn))
-                .setText(company.getInn());
+                .findViewById(R.id.profile_proj_text_end))
+                .setText(project.getEndDate());
 
         ((TextView) getView()
-                .findViewById(R.id.profile_org_ogrn))
-                .setText(company.getOgrn());
+                .findViewById(R.id.profile_proj_days_left))
+                .setText(getDaysLeft());
     }
 }

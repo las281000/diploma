@@ -1,10 +1,9 @@
 package com.example.doctracermobile.repository;
 
-import android.content.SharedPreferences;
-import android.util.Log;
+import static com.example.doctracermobile.utile.Constants.APP_PREFERENCES_LOGIN;
+import static com.example.doctracermobile.utile.Constants.APP_PREFERENCES_PASSWORD;
 
-import static com.example.doctracermobile.util.Constants.APP_PREFERENCES_LOGIN;
-import static com.example.doctracermobile.util.Constants.APP_PREFERENCES_PASSWORD;
+import android.content.SharedPreferences;
 
 public class Preferences {
 

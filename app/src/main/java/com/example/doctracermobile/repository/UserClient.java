@@ -1,12 +1,13 @@
 package com.example.doctracermobile.repository;
 
+import static com.example.doctracermobile.utile.Constants.JSON;
+
 import android.util.Log;
 
-import com.example.doctracermobile.entity.User;
-import com.example.doctracermobile.request.JointUserCompany;
 import com.example.doctracermobile.request.JointEmailToken;
+import com.example.doctracermobile.request.JointUserProject;
 import com.example.doctracermobile.request.UserForRequest;
-import com.example.doctracermobile.util.CustomAuthenticator;
+import com.example.doctracermobile.utile.CustomAuthenticator;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -16,8 +17,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-import static com.example.doctracermobile.util.Constants.JSON;
 
 public class UserClient {
     private static final String TAG = "USER_CLIENT"; //Для ошибок
@@ -29,7 +28,7 @@ public class UserClient {
     private String error;
 
     //Запрос на авторизацию
-    public static JointUserCompany signIn(String login, String password) {
+    public static JointUserProject signIn(String login, String password) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .authenticator(new CustomAuthenticator(login, password))
                 .retryOnConnectionFailure(false)
@@ -40,11 +39,11 @@ public class UserClient {
 
         try {
             Response response = client.newCall(signInRequest).execute();
-
+            Log.e(TAG, response.toString());
             if (response.code() != 200) {
                 return null;
             }
-            return new Gson().fromJson(response.body().string(), JointUserCompany.class);
+            return new Gson().fromJson(response.body().string(), JointUserProject.class);
 
         } catch (IOException | JsonSyntaxException e) {
             Log.e(TAG, e.getMessage());
@@ -75,7 +74,7 @@ public class UserClient {
 
     }
 
-    public static JointUserCompany update(String oldLogin, String oldPassword, UserForRequest newUserData) {
+    public static JointUserProject update(String oldLogin, String oldPassword, UserForRequest newUserData) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .authenticator(new CustomAuthenticator(oldLogin, oldPassword))
                 .retryOnConnectionFailure(false)
@@ -94,7 +93,7 @@ public class UserClient {
             if (response.code() != 200) {
                 return null;
             }
-            return new Gson().fromJson(response.body().string(), JointUserCompany.class);
+            return new Gson().fromJson(response.body().string(), JointUserProject.class);
 
         } catch (IOException | JsonSyntaxException e) {
             Log.e(TAG, e.getMessage());

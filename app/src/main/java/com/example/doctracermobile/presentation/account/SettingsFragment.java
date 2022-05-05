@@ -1,6 +1,6 @@
 package com.example.doctracermobile.presentation.account;
 
-import static com.example.doctracermobile.util.Constants.APP_PREFERENCES;
+import static com.example.doctracermobile.utile.Constants.APP_PREFERENCES;
 
 import android.content.Context;
 import android.content.Intent;
