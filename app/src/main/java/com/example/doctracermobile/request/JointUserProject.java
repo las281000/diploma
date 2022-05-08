@@ -13,13 +13,13 @@ public class JointUserProject {
     private String startDate;
     private String endDate;
 
-    private String name;        //Имя
-    private String surname;     //Фамилия
-    private String patronum;    //Отчество
-    private String position;    //Должность
-    private String phoneNumber;       //Телефон TODO уточнить про название поля (было phone)
-    private String email;    //Логин (эл.почта)
-    private String password;        //Пароль
+    private String name;
+    private String surname;
+    private String patronum;
+    private String position;
+    private String phoneNumber;
+    private String email;
+    private String password;
 
     @Override
     public String toString() {

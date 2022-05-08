@@ -78,7 +78,7 @@
     <string name="profile_proj_description">Описание</string>
     <string name="profile_proj_start">Дата начала</string>
     <string name="profile_proj_end">Плановая дата завершения</string>
-    <string name="profile_proj_days_left">Дней до окончания</string>
+    <string name="profile_proj_days_left">Дней до завнршения </string>
 
     <string name="change_user_data">Изменить данные</string>
     <string name="new_password_label">Новый пароль</string>

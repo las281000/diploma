@@ -27,6 +27,8 @@ import com.example.doctracermobile.request.JointUserProject;
 import com.example.doctracermobile.usecase.DataValidator;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.time.Instant;
+
 public class EntryFragment extends Fragment {
 
     SharedPreferences preferences;
@@ -144,10 +146,11 @@ public class EntryFragment extends Fragment {
                         jointUserProject.getEmail(),
                         password);
 
-                Project project = new Project(jointUserProject.getProjectName(),
+                Project project = new Project(
+                        jointUserProject.getProjectName(),
                         jointUserProject.getDescription(),
-                        jointUserProject.getStartDate(),
-                        jointUserProject.getEndDate());
+                        Instant.parse(jointUserProject.getStartDate()),
+                        Instant.parse(jointUserProject.getEndDate()));
 
                 Preferences.savePreferences(preferences, user.getEmail(), user.getPass());
 

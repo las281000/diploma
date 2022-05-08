@@ -10,11 +10,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
 import com.example.doctracermobile.entity.Project;
 import com.example.doctracermobile.entity.User;
+
+import java.time.Duration;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class ProfileFragment extends Fragment {
 
@@ -25,7 +31,7 @@ public class ProfileFragment extends Fragment {
     //Обработчик кнопки обновления перс.данных (перекинет на страницу доступа)
     private View.OnClickListener accessButtListener = (v) -> {
         Bundle bundle = new Bundle();
-        bundle.putSerializable("user",user);
+        bundle.putSerializable("user", user);
 
         ((AccountActivity) getActivity())
                 .getNavController()
@@ -55,8 +61,8 @@ public class ProfileFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
-    private int getDaysLeft(){
-        int daysLeft=0;
+    private int getDaysLeft() {
+        int daysLeft = 0;
 
         return daysLeft;
     }
@@ -69,10 +75,10 @@ public class ProfileFragment extends Fragment {
         accessButt = getView().findViewById(R.id.profile_but_change);
         accessButt.setOnClickListener(accessButtListener);
 
-        if (getArguments() != null){ //сработает если были изменены данные
+        if (getArguments() != null) { //сработает если были изменены данные
             user = (User) getArguments().getSerializable("newUserData");
             Log.e("PROFILE", "Новые данные получены фрагментом");
-        } else{ // сработает если только вошли в акк
+        } else { // сработает если только вошли в акк
             user = (User) getActivity().getIntent().getSerializableExtra("user");
         }
 
@@ -111,16 +117,38 @@ public class ProfileFragment extends Fragment {
                 .findViewById(R.id.profile_proj_description))
                 .setText(project.getDescription());
 
+        String startDate = DateTimeFormatter
+                .ofPattern("dd.MM.yyyy")
+                .withZone(ZoneId.systemDefault()).format(project.getStartDate());
+
+        String endDate = DateTimeFormatter
+                .ofPattern("dd.MM.yyyy")
+                .withZone(ZoneId.systemDefault()).format(project.getEndDate());
+
         ((TextView) getView()
                 .findViewById(R.id.profile_proj_text_start))
-                .setText(project.getStartDate());
+                .setText(startDate);
 
         ((TextView) getView()
                 .findViewById(R.id.profile_proj_text_end))
-                .setText(project.getEndDate());
+                .setText(endDate);
 
-        ((TextView) getView()
-                .findViewById(R.id.profile_proj_days_left))
-                .setText(getDaysLeft());
+        long daysLeft = Duration.between(Instant.now(), project.getEndDate()).toDays();
+
+        TextView labelDaysLeft = getView().findViewById(R.id.profile_proj_days_left_label);
+        TextView textDaysLeft =  getView().findViewById(R.id.profile_proj_days_left);
+
+        if (daysLeft > 0) {
+            labelDaysLeft.setTextColor(ContextCompat.getColor(this.getContext(), R.color.green_additional));
+            textDaysLeft.setText(String.valueOf(daysLeft));
+            textDaysLeft.setTextColor(ContextCompat.getColor(this.getContext(), R.color.green_additional));
+        } else{
+            labelDaysLeft.setTextColor(ContextCompat.getColor(this.getContext(), R.color.red));
+            labelDaysLeft.setText("Просрочено дней");
+
+            textDaysLeft.setText(String.valueOf(daysLeft*(-1)));
+            textDaysLeft.setTextColor(ContextCompat.getColor(this.getContext(), R.color.red));
+        }
+
     }
 }

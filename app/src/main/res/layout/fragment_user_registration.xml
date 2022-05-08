@@ -12,20 +12,6 @@
         android:background="@color/white"
         android:gravity="center_vertical">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-            <EditText
-                android:id="@+id/reg_user_edit_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/staff_name_label"
-                android:inputType="text"
-                android:textColor="@color/purple"
-                android:textColorHint="@color/pale_purple" />
-        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -37,6 +23,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/staff_surname_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_user_edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/staff_name_label"
                 android:inputType="text"
                 android:textColor="@color/purple"
                 android:textColorHint="@color/pale_purple" />

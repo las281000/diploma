@@ -1,6 +1,7 @@
 package com.example.doctracermobile.entity;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +16,8 @@ public class Project implements Serializable {
 
     private String name; //Название проекта
     private String description;
-    private String startDate;
-    private String endDate;
+    private Instant startDate;
+    private Instant endDate;
 
     public boolean emptyFieldsCheck(){
         if (name.equals("") ||

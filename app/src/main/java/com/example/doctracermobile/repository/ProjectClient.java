@@ -18,17 +18,17 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ProjectClient {
-    private static final String TAG = "COMPANY_CLIENT"; //Для ошибок
+    private static final String TAG = "PROJECT_CLIENT"; //Для ошибок
 
     private static final String URL = "http://checka.ru:3333";
-    private static final String regURL = "/public/company";
+    private static final String regURL = "/public/project";
 
     public static boolean register(Project project, User user) {
         JointUserProject jointUserProject = new JointUserProject(
                 project.getName(),
                 project.getDescription(),
-                project.getStartDate(),
-                project.getEndDate(),
+                project.getStartDate().toString(),
+                project.getEndDate().toString(),
                 user.getName(),
                 user.getSurname(),
                 user.getPatronum(),

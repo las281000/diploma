@@ -2,6 +2,8 @@ package com.example.doctracermobile.presentation.start;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +20,64 @@ import com.example.doctracermobile.usecase.DataValidator;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class ProjRegistrationFragment extends Fragment {
 
     private Button buttNext;
+
     private EditText editStartDate;
     private EditText editEndDate;
     private Calendar calendar;
+    private Instant start;
+    private Instant end;
+
+    //создает диалог с нужным слушателем
+    private void createDatePickerDialog(View v) {
+        calendar = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(
+                this.getContext(),
+                startDateDialogListener,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        if (v.getId() != R.id.reg_project_date_start) {
+            dialog.setOnDateSetListener(endDateDialogListener);
+        }
+        dialog.show();
+    }
+
+    //вернет формат, котрым форматирует дату
+    private SimpleDateFormat setDatePickerDialog(int year, int month, int day){
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy"); //форматирование даты
+        return format;
+    };
+
+    //слушатель для startDatePicker
+    private DatePickerDialog.OnDateSetListener startDateDialogListener = (v, year, month, day) -> {
+        SimpleDateFormat format = setDatePickerDialog(year, month, day);
+        editStartDate.setText(format.format(calendar.getTime()));
+        start = calendar.getTime().toInstant();
+        Log.e("START_DATE", start.toString());
+    };
+
+    //слушатель для endDatePicker
+    private DatePickerDialog.OnDateSetListener endDateDialogListener = (v, year, month, day) -> {
+        SimpleDateFormat format = setDatePickerDialog(year, month, day);
+        editEndDate.setText(format.format(calendar.getTime()));
+        end = calendar.getTime().toInstant();
+        Log.e("END_DATE", end.toString());
+    };
+
+    //слушатель поля ввода startDate
+    private View.OnClickListener dateEditListener = (v) -> {
+        createDatePickerDialog(v);
+    };
 
     //Получает данные проекта из формы
     private Project getProjectFromForm() {
@@ -48,27 +100,8 @@ public class ProjRegistrationFragment extends Fragment {
                 .getText()
                 .toString();
 
-        return new Project(name,description, startDate, endDate);
+        return new Project(name, description, start, end);
     }
-
-    //слушатель окна календаря
-    private final DatePickerDialog.OnDateSetListener dateListener = (v, year, month, day) -> {
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
-    };
-
-    //слушатель нажатия на поле ввода даты
-    private final View.OnClickListener startDateButtListener = (v) -> {
-        new DatePickerDialog(this.getContext(), dateListener,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH))
-                .show();
-
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        ((EditText) v).setText(formatter.format(calendar.getTime()));
-    };
 
     private final View.OnClickListener nextButtListener = (v) -> {
         Project project = getProjectFromForm();
@@ -80,7 +113,7 @@ public class ProjRegistrationFragment extends Fragment {
         }
 
         //Чтоб с заглавной буквы
-        if (!DataValidator.capitalLetterCheck(project.getName())){
+        if (!DataValidator.capitalLetterCheck(project.getName())) {
             Snackbar.make(v, "Укажите название проекта с заглавной буквы!", Snackbar.LENGTH_LONG).show();
             return;
         }
@@ -92,7 +125,7 @@ public class ProjRegistrationFragment extends Fragment {
 
         ((StartActivity) getActivity())
                 .getNavController()
-                .navigate(R.id.action_orgRegistrationFragment_to_userRegistrationFragment,bundle);
+                .navigate(R.id.action_orgRegistrationFragment_to_userRegistrationFragment, bundle);
 
     };
 
@@ -127,19 +160,22 @@ public class ProjRegistrationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String title = getActivity().getResources().getString(R.string.proj_reg_fragment_title);
-        ((StartActivity)getActivity()).setTitle(title);
-
-        calendar = Calendar.getInstance();
+        ((StartActivity) getActivity()).setTitle(title);
 
         //Логика кнопки (тут проверки полей и переход к следующему этапу регистрации)
         buttNext = (Button) getView().findViewById(R.id.reg_project_but_next);
         buttNext.setOnClickListener(nextButtListener);
 
+        calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC +3")); //получение текущей даты
+        calendar.clear();
+
+
         editStartDate = (EditText) getView().findViewById(R.id.reg_project_date_start);
+        editStartDate.setInputType(InputType.TYPE_NULL);
+        editStartDate.setOnClickListener(dateEditListener);
+
         editEndDate = (EditText) getView().findViewById(R.id.reg_project_date_end);
-
-        editStartDate.setOnClickListener(startDateButtListener);
-        editEndDate.setOnClickListener(startDateButtListener);
-
+        editEndDate.setInputType(InputType.TYPE_NULL);
+        editEndDate.setOnClickListener(dateEditListener);
     }
 }

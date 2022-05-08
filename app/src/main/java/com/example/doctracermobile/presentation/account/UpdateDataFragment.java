@@ -126,15 +126,6 @@ public class UpdateDataFragment extends Fragment {
         return true;
     }
 
-    /*public static UpdateDataFragment newInstance(String param1, String param2) {
-        UpdateDataFragment fragment = new UpdateDataFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }*/
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -2,6 +2,7 @@ package com.example.doctracermobile.presentation.start;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +22,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 
 public class UserRegistrationFragment extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
     private Project project;
     private User user;
@@ -112,8 +107,6 @@ public class UserRegistrationFragment extends Fragment {
     public static UserRegistrationFragment newInstance(String param1, String param2) {
         UserRegistrationFragment fragment = new UserRegistrationFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -142,6 +135,11 @@ public class UserRegistrationFragment extends Fragment {
 
         confirmButton = (Button) getView().findViewById(R.id.reg_user_but_confirm);
         confirmButton.setOnClickListener(confirmButtListener);
+
+        EditText phone = (EditText) getView().findViewById(R.id.reg_user_edit_phone);
+        phone.setText("+7");
+        phone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
     }
 
     private class RegTask extends AsyncTask<Void, Void, Boolean> {
