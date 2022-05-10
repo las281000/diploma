@@ -13,20 +13,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.doctracermobile.R;
+import com.example.doctracermobile.presentation.account.AccountActivity;
 import com.example.doctracermobile.repository.UserClient;
 import com.google.android.material.snackbar.Snackbar;
 
 
 public class EmailConfirmationFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
     private Button buttConfirm;
     private String email;
+    private boolean newEmployeeFlag;
 
     //Слушатель кнопки подстведжения почты
     private final View.OnClickListener confirmListener = (v) -> {
@@ -40,22 +37,13 @@ public class EmailConfirmationFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static EmailConfirmationFragment newInstance(String param1, String param2) {
-        EmailConfirmationFragment fragment = new EmailConfirmationFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             email = getArguments().getString("email");
-         /*   mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);*/
+            newEmployeeFlag = getArguments().getBoolean("newEmployee");
         }
     }
 
@@ -93,9 +81,15 @@ public class EmailConfirmationFragment extends Fragment {
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
             if (result) {
-                ((StartActivity) getActivity())
-                        .getNavController()
-                        .navigate(R.id.action_emailConfirmationFragment_to_entryFragment);;
+                if (newEmployeeFlag) {
+                    ((AccountActivity) getActivity())
+                            .getNavController()
+                            .navigate(R.id.action_emailConfirmationFragment2_to_nav_staff);
+                } else {
+                    ((StartActivity) getActivity())
+                            .getNavController()
+                            .navigate(R.id.action_emailConfirmationFragment_to_entryFragment);
+                }
             } else {
                 Snackbar.make(buttConfirm, "Неверный код!", Snackbar.LENGTH_LONG).show();
             }

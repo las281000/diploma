@@ -4,6 +4,7 @@ import static com.example.doctracermobile.utile.Constants.JSON;
 
 import android.util.Log;
 
+import com.example.doctracermobile.entity.User;
 import com.example.doctracermobile.request.JointEmailToken;
 import com.example.doctracermobile.request.JointUserProject;
 import com.example.doctracermobile.request.UserForRequest;
@@ -24,6 +25,7 @@ public class UserClient {
     private static final String signInURL = "/user";
     private static final String verifyURL = "/public/user/activate";
     private static final String updateURL = "/user";
+    private static final String registerURL = "/user";
 
     private String error;
 
@@ -100,5 +102,34 @@ public class UserClient {
             return null;
         }
 
+    }
+
+    //для регистрации раба
+    public static boolean register(User employee, String login, String password){
+        OkHttpClient client = new OkHttpClient.Builder()
+                .authenticator(new CustomAuthenticator(login, password))
+                .retryOnConnectionFailure(false)
+                .build();
+
+        String jsonObject = new Gson().toJson(employee); //делаем JSON
+        Log.d("json", jsonObject);
+
+        Request registerRequest = new Request.Builder()
+                .url(URL+registerURL)
+                .post(RequestBody.create(JSON, jsonObject))
+                .build();
+
+        try {
+            Response response = client.newCall(registerRequest).execute();
+            Log.e("TRY_" + TAG,response.body().string());
+            if (response.code() != 200) {
+                return false;
+            }
+            return true;
+
+        } catch (IOException | JsonSyntaxException e) {
+            Log.e(TAG, e.getMessage());
+            return false;
+        }
     }
 }

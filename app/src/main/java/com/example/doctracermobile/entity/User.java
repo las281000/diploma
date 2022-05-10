@@ -18,9 +18,9 @@ public class User implements Serializable {
     private String surname;     //Фамилия
     private String patronum;    //Отчество
     private String position;    //Должность
-    private String phone;       //Телефон
+    private String phoneNumber;       //Телефон
     private String email;    //Логин (эл.почта)
-    private String pass;        //Пароль
+    private String password;        //Пароль
 
     @Override
     public String toString() {
@@ -29,9 +29,9 @@ public class User implements Serializable {
                 ", surname='" + surname + '\'' +
                 ", patronum='" + patronum + '\'' +
                 ", position='" + position + '\'' +
-                ", phone='" + phone + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", pass='" + pass + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 
@@ -40,10 +40,10 @@ public class User implements Serializable {
                 this.getSurname().equals("") ||
                 this.getPatronum().equals("") ||
                 this.getPosition().equals("") ||
-                this.getPhone().equals("+7") ||
-                this.getPhone().equals("") ||
+                this.getPhoneNumber().equals("+7") ||
+                this.getPhoneNumber().equals("") ||
                 this.getEmail().equals("") ||
-                this.getPass().equals("")) {
+                this.getPassword().equals("")) {
             return true;
         }
         return false;

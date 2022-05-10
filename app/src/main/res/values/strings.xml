@@ -85,4 +85,7 @@
     <string name="old_password_require">Введите текущий пароль, чтобы продолжить.</string>
 
     <string name="hello_blank_fragment"> Пустой фрагемент</string>
+
+    <!-- ////////////////////// StaffFragment labels ////////////////////////////// -->
+    <string name="new_employee">Добавить нового сотрудника</string>
 </resources>

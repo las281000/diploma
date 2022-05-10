@@ -28,7 +28,7 @@ public class AccessToUpdatingFragment extends Fragment {
     private  final View.OnClickListener nextButtListener = (v) -> {
         String password = ((EditText) getView().findViewById(R.id.access_edit_password)).getText().toString();
 
-        if (!password.equals(user.getPass())) {
+        if (!password.equals(user.getPassword())) {
             Snackbar.make(v, "Неверный пароль!", Snackbar.LENGTH_LONG).show();
         } else {
             //если введен верный пароль, передаем в след. фрагмент данные пользователя

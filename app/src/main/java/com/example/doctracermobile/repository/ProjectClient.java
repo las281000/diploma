@@ -33,9 +33,9 @@ public class ProjectClient {
                 user.getSurname(),
                 user.getPatronum(),
                 user.getPosition(),
-                user.getPhone(),
+                user.getPhoneNumber(),
                 user.getEmail(),
-                user.getPass()
+                user.getPassword()
         );
         String jsonObject = new Gson().toJson(jointUserProject);
 

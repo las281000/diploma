@@ -56,32 +56,32 @@ public class UpdateDataFragment extends Fragment {
         }
         //Проверка формы номера телефона
         String validatorReply;
-        validatorReply = DataValidator.phoneCheck(newUserData.getPhone());
+        validatorReply = DataValidator.phoneCheck(newUserData.getPhoneNumber());
         if (validatorReply != null) {
             Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
             return;
         }
         //Валидация пароля
-        validatorReply = DataValidator.passwordCheck(newUserData.getPass());
+        validatorReply = DataValidator.passwordCheck(newUserData.getPassword());
         if (validatorReply != null) { //если к строке есть замечания
             Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
             return;
         }
         //Проверка совпадения паролей в полях
-        if (!newUserData.getPass().equals(password_d)) {
+        if (!newUserData.getPassword().equals(password_d)) {
             Snackbar.make(v, "Пароли не совпадают!", Snackbar.LENGTH_LONG).show();
         } else {
-            newUserData.setPhone(newUserData.getPhone()
+            newUserData.setPhoneNumber(newUserData.getPhoneNumber()
                     .replaceAll(" ", "")
                     .replaceAll("-", ""));
             UserForRequest updatedUser = new UserForRequest(newUserData.getName(),
                     newUserData.getSurname(),
                     newUserData.getPatronum(),
                     newUserData.getPosition(),
-                    newUserData.getPhone(),
+                    newUserData.getPhoneNumber(),
                     newUserData.getEmail(),
-                    newUserData.getPass());
-            new UpdateTask(oldUserData.getEmail(), oldUserData.getPass(), updatedUser).execute();
+                    newUserData.getPassword());
+            new UpdateTask(oldUserData.getEmail(), oldUserData.getPassword(), updatedUser).execute();
         }
     };
 
@@ -154,10 +154,10 @@ public class UpdateDataFragment extends Fragment {
         ((EditText) rootView.findViewById(R.id.update_edit_surname)).setText(oldUserData.getSurname());
         ((EditText) rootView.findViewById(R.id.update_edit_patronum)).setText(oldUserData.getPatronum());
         ((EditText) rootView.findViewById(R.id.update_edit_position)).setText(oldUserData.getPosition());
-        phoneEdit.setText(oldUserData.getPhone());
+        phoneEdit.setText(oldUserData.getPhoneNumber());
         ((EditText) rootView.findViewById(R.id.update_edit_email)).setText(oldUserData.getEmail());
-        ((EditText) rootView.findViewById(R.id.update_edit_pass)).setText(oldUserData.getPass());
-        ((EditText) rootView.findViewById(R.id.update_edit_pass_d)).setText(oldUserData.getPass());
+        ((EditText) rootView.findViewById(R.id.update_edit_pass)).setText(oldUserData.getPassword());
+        ((EditText) rootView.findViewById(R.id.update_edit_pass_d)).setText(oldUserData.getPassword());
 
         //прослушка в кнопку
         updateButton = rootView.findViewById(R.id.update_butt_save);
@@ -200,7 +200,7 @@ public class UpdateDataFragment extends Fragment {
                     newUserData.getPassword());
 
             //Если пароль изменился, то выход из акка
-            if (!user.getPass().equals(oldPassword)) {
+            if (!user.getPassword().equals(oldPassword)) {
                 Preferences.removePassword(getActivity().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE));
                 startActivity(new Intent(getActivity(), StartActivity.class));
                 getActivity().finish();

@@ -152,7 +152,7 @@ public class EntryFragment extends Fragment {
                         Instant.parse(jointUserProject.getStartDate()),
                         Instant.parse(jointUserProject.getEndDate()));
 
-                Preferences.savePreferences(preferences, user.getEmail(), user.getPass());
+                Preferences.savePreferences(preferences, user.getEmail(), user.getPassword());
 
                 //Если авторизация прошла успешно заврешаем эту активность и переходим в АКТИВНОСТЬ профиля
                 Intent signIn = new Intent(getContext(), AccountActivity.class);
@@ -161,7 +161,7 @@ public class EntryFragment extends Fragment {
                 startActivity(signIn);
                 getActivity().finish();
             } else {
-                Snackbar.make(buttSingIn, "Неверный логин или пароль", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getActivity().findViewById(android.R.id.content), "Неверный логин или пароль", Snackbar.LENGTH_LONG).show();
             }
         }
     }

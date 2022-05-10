@@ -1,5 +1,8 @@
 package com.example.doctracermobile.presentation.start;
 
+import static com.example.doctracermobile.utile.Constants.APP_PREFERENCES;
+
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -16,16 +19,19 @@ import androidx.fragment.app.Fragment;
 import com.example.doctracermobile.R;
 import com.example.doctracermobile.entity.Project;
 import com.example.doctracermobile.entity.User;
+import com.example.doctracermobile.presentation.account.AccountActivity;
+import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.ProjectClient;
+import com.example.doctracermobile.repository.UserClient;
 import com.example.doctracermobile.usecase.DataValidator;
 import com.google.android.material.snackbar.Snackbar;
 
 
 public class UserRegistrationFragment extends Fragment {
 
-    private Project project;
-    private User user;
-
+    private Project newProject;
+    private User newUser;
+    private boolean newEmployeeFlag;
     private Button confirmButton;
 
     public UserRegistrationFragment() {
@@ -60,47 +66,51 @@ public class UserRegistrationFragment extends Fragment {
     }
 
     private final View.OnClickListener confirmButtListener = (v) -> {
-        user = getUserFromForm();
+        newUser = getUserFromForm();
         String password_d = ((EditText) getView().findViewById(R.id.reg_user_edit_pass_d))
                 .getText()
                 .toString();
 
         //Проверка пустых полей
-        if (user.emptyFieldCheck() && password_d.equals("")) {
+        if (newUser.emptyFieldCheck() && password_d.equals("")) {
             Snackbar.make(v, "Заполните все поля!", Snackbar.LENGTH_LONG).show();
             return;
         }
 
         // Проврека заглавных букв
-        if (!DataValidator.capitalLetterCheck(user.getName()) ||
-                !DataValidator.capitalLetterCheck(user.getSurname()) ||
-                !DataValidator.capitalLetterCheck(user.getPatronum()) ||
-                !DataValidator.capitalLetterCheck(user.getPosition())) {
+        if (!DataValidator.capitalLetterCheck(newUser.getName()) ||
+                !DataValidator.capitalLetterCheck(newUser.getSurname()) ||
+                !DataValidator.capitalLetterCheck(newUser.getPatronum()) ||
+                !DataValidator.capitalLetterCheck(newUser.getPosition())) {
             Snackbar.make(v, "Введите ФИО и должность с заглавной буквы!", Snackbar.LENGTH_LONG).show();
             return;
         }
 
         String validatorReply; //сюда будем класть ответы валидатора
-        validatorReply = DataValidator.phoneCheck(user.getPhone()); //Проверка телефона
+        validatorReply = DataValidator.phoneCheck(newUser.getPhoneNumber()); //Проверка телефона
         if (validatorReply != null) {
             Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
             return;
         }
-        validatorReply = DataValidator.passwordCheck(user.getPass()); //Валиддация пароля
+        validatorReply = DataValidator.passwordCheck(newUser.getPassword()); //Валиддация пароля
         if (validatorReply != null) {
             Snackbar.make(v, validatorReply, Snackbar.LENGTH_LONG).show();
             return;
         }
 
-        if (!user.getPass().equals(password_d)) {//если введены разные строки
+        if (!newUser.getPassword().equals(password_d)) {//если введены разные строки
             Snackbar.make(v, "Пароли не совпадают!", Snackbar.LENGTH_LONG).show();
         } else {
-            user.setPhone(user
-                    .getPhone()
+            newUser.setPhoneNumber(newUser
+                    .getPhoneNumber()
                     .replaceAll(" ", "")
                     .replaceAll("-", ""));
 
-            new RegTask(user, project).execute();
+            if (newEmployeeFlag) {
+                new EmplRegTask(newUser).execute();
+            } else{
+                new ProjRegTask(newUser, newProject).execute();
+            }
         }
     };
 
@@ -116,7 +126,8 @@ public class UserRegistrationFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             //получение объекта проекта из прошлого фрагмента
-            project = (Project) getArguments().getSerializable("project");
+            newProject = (Project) getArguments().getSerializable("project");
+            newEmployeeFlag = getArguments().getBoolean("newEmployee"); //получим true, если вызвано для регистрации подчиненного
         }
     }
 
@@ -131,7 +142,7 @@ public class UserRegistrationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String title = getActivity().getResources().getString(R.string.manager_reg_fragment_title);
-        ((StartActivity)getActivity()).setTitle(title);
+        ((AccountActivity)getActivity()).setTitle(title);
 
         confirmButton = (Button) getView().findViewById(R.id.reg_user_but_confirm);
         confirmButton.setOnClickListener(confirmButtListener);
@@ -139,21 +150,20 @@ public class UserRegistrationFragment extends Fragment {
         EditText phone = (EditText) getView().findViewById(R.id.reg_user_edit_phone);
         phone.setText("+7");
         phone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-
     }
 
-    private class RegTask extends AsyncTask<Void, Void, Boolean> {
-        private User user;
-        private Project project;
+    private class ProjRegTask extends AsyncTask<Void, Void, Boolean> {
+        private User newUser;
+        private Project newProject;
 
-        private RegTask(User user, Project project) {
-            this.user = user;
-            this.project = project;
+        private ProjRegTask(User newUser, Project newProject) {
+            this.newUser = newUser;
+            this.newProject = newProject;
         }
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            return ProjectClient.register(project, user);
+            return ProjectClient.register(newProject, newUser);
         }
 
         @Override
@@ -161,10 +171,44 @@ public class UserRegistrationFragment extends Fragment {
             super.onPostExecute(result);
             if (result) {
                 Bundle bundle = new Bundle();
-                bundle.putString("email", user.getEmail());
+                bundle.putString("email", newUser.getEmail());
                 ((StartActivity) getActivity())
                         .getNavController()
                         .navigate(R.id.action_userRegistrationFragment_to_emailConfirmationFragment,bundle);
+            } else {
+                Snackbar.make(confirmButton, "Регистрация не удалась!", Snackbar.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    //регистрируем раба
+    private class EmplRegTask extends AsyncTask<Void, Void, Boolean> {
+        private final User employee;
+
+        private EmplRegTask(User employee) {
+            this.employee = employee;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            String login = Preferences.getLogin(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
+            String password = Preferences.getPassword(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
+
+            return UserClient.register(employee, login, password);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            if (result) {
+                Bundle bundle = new Bundle();
+                bundle.putString("email", employee.getEmail());
+                if (newEmployeeFlag){
+                    bundle.putBoolean("newEmployee", true);
+                }
+                ((AccountActivity) getActivity())
+                        .getNavController()
+                        .navigate(R.id.action_userRegistrationFragment2_to_emailConfirmationFragment2,bundle);
             } else {
                 Snackbar.make(confirmButton, "Регистрация не удалась!", Snackbar.LENGTH_LONG).show();
             }

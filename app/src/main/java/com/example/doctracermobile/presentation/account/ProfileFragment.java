@@ -101,7 +101,7 @@ public class ProfileFragment extends Fragment {
 
         ((TextView) getView()
                 .findViewById(R.id.profile_text_phone))
-                .setText(user.getPhone());
+                .setText(user.getPhoneNumber());
 
         ((TextView) getView()
                 .findViewById(R.id.profile_text_email))
