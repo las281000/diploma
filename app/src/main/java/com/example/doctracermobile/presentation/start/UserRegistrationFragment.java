@@ -114,12 +114,6 @@ public class UserRegistrationFragment extends Fragment {
         }
     };
 
-    public static UserRegistrationFragment newInstance(String param1, String param2) {
-        UserRegistrationFragment fragment = new UserRegistrationFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -141,8 +135,13 @@ public class UserRegistrationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String title = getActivity().getResources().getString(R.string.manager_reg_fragment_title);
-        ((AccountActivity)getActivity()).setTitle(title);
+        String title;
+        if(!newEmployeeFlag){
+            title = getActivity().getResources().getString(R.string.manager_reg_fragment_title);
+            getActivity().setTitle(title);
+        } else{
+
+        }
 
         confirmButton = (Button) getView().findViewById(R.id.reg_user_but_confirm);
         confirmButton.setOnClickListener(confirmButtListener);

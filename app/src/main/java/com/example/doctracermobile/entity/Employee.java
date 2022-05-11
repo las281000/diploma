@@ -17,8 +17,7 @@ public class Employee {
     private String phone;       //Телефон
     private String email;    //Логин (эл.почта)
 
-    @Override
-    public String toString(){
-        return surname + " " + name.charAt(0)+ "." + patronum.charAt(0)+"., " + position.toLowerCase();
+    public String getFullName(){
+        return surname + " " + name + " " + patronum;
     }
 }

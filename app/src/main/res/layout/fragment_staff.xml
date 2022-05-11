@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.account.StaffFragment">
+    tools:context=".presentation.account.StaffFragment"
+    android:padding="10dp">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/staff_reg_fab"
@@ -13,5 +14,10 @@
         android:src="@drawable/ic_add"
         android:contentDescription="@string/new_employee"
         android:layout_margin="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/staff_recycler_employees"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>

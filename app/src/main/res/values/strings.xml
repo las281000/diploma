@@ -18,7 +18,7 @@
 
     <!-- UserRegistrationFragment labels -->
     <string name="manager_reg_fragment_title">Регистрация владельца проекта</string>
-    <string name="head_reg_title">Учетная запись руководителя</string>
+    <string name="employee_reg_title">Регистрация нового сотрудника</string>
     <string name="staff_name_label">Имя</string>
     <string name="staff_surname_label">Фамилия</string>
     <string name="staff_patron_label">Отчество</string>
@@ -78,7 +78,7 @@
     <string name="profile_proj_description">Описание</string>
     <string name="profile_proj_start">Дата начала</string>
     <string name="profile_proj_end">Плановая дата завершения</string>
-    <string name="profile_proj_days_left">Дней до завнршения </string>
+    <string name="profile_proj_days_left">Дней до завершения </string>
 
     <string name="change_user_data">Изменить данные</string>
     <string name="new_password_label">Новый пароль</string>

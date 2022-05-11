@@ -4,6 +4,7 @@ import static com.example.doctracermobile.utile.Constants.JSON;
 
 import android.util.Log;
 
+import com.example.doctracermobile.entity.Employee;
 import com.example.doctracermobile.entity.User;
 import com.example.doctracermobile.request.JointEmailToken;
 import com.example.doctracermobile.request.JointUserProject;
@@ -13,6 +14,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -26,6 +29,7 @@ public class UserClient {
     private static final String verifyURL = "/public/user/activate";
     private static final String updateURL = "/user";
     private static final String registerURL = "/user";
+    private static final String getEmployeeURL = "/user/employees";
 
     private String error;
 
@@ -105,7 +109,7 @@ public class UserClient {
     }
 
     //для регистрации раба
-    public static boolean register(User employee, String login, String password){
+    public static boolean register(User employee, String login, String password) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .authenticator(new CustomAuthenticator(login, password))
                 .retryOnConnectionFailure(false)
@@ -115,13 +119,13 @@ public class UserClient {
         Log.d("json", jsonObject);
 
         Request registerRequest = new Request.Builder()
-                .url(URL+registerURL)
+                .url(URL + registerURL)
                 .post(RequestBody.create(JSON, jsonObject))
                 .build();
 
         try {
             Response response = client.newCall(registerRequest).execute();
-            Log.e("TRY_" + TAG,response.body().string());
+            Log.e("TRY_" + TAG, response.body().string());
             if (response.code() != 200) {
                 return false;
             }
@@ -130,6 +134,32 @@ public class UserClient {
         } catch (IOException | JsonSyntaxException e) {
             Log.e(TAG, e.getMessage());
             return false;
+        }
+    }
+
+    public static ArrayList<Employee> getEmployees(String login, String password) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .authenticator(new CustomAuthenticator(login, password))
+                .retryOnConnectionFailure(false)
+                .build();
+
+        Request employeesRequest = new Request.Builder()
+                .url(URL + getEmployeeURL)
+                .build();
+
+        try {
+            Response response = client.newCall(employeesRequest).execute();
+            Log.e(TAG, response.toString());
+            if (response.code() != 200) {
+                return null;
+            }
+            String responseJSON = response.body().string().replace("{\"employees\":", "");
+            responseJSON = responseJSON.substring(0,responseJSON.length()-1);
+            ArrayList list = new ArrayList<> (Arrays.asList(new Gson().fromJson(responseJSON, Employee[].class)));
+            return list;
+        } catch (IOException | JsonSyntaxException e) {
+            Log.e(TAG, e.getMessage());
+            return null;
         }
     }
 }

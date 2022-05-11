@@ -71,7 +71,7 @@
     <fragment
         android:id="@+id/userRegistrationFragment2"
         android:name="com.example.doctracermobile.presentation.start.UserRegistrationFragment"
-        android:label="fragment_user_registration"
+        android:label="@string/employee_reg_title"
         tools:layout="@layout/fragment_user_registration" >
         <action
             android:id="@+id/action_userRegistrationFragment2_to_emailConfirmationFragment2"
@@ -80,7 +80,7 @@
     <fragment
         android:id="@+id/emailConfirmationFragment2"
         android:name="com.example.doctracermobile.presentation.start.EmailConfirmationFragment"
-        android:label="fragment_email_confirmation"
+        android:label="@string/reg_last_step_title"
         tools:layout="@layout/fragment_email_confirmation" >
         <action
             android:id="@+id/action_emailConfirmationFragment2_to_nav_staff"
