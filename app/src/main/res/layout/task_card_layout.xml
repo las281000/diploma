@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/task_cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    cardView:cardCornerRadius="10dp"
+    android:layout_marginVertical="5dp"
+    cardView:cardBackgroundColor="@color/spring_green">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/card_text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Фамилия Имя Отчетсво"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/card_text_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Должность"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/card_text_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Телефон"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/card_text_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Почта"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

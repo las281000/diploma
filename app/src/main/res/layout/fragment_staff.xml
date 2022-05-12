@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:src="@drawable/ic_add"
-        android:contentDescription="@string/new_employee"
+        android:contentDescription="@string/new_employee_fragment_title"
         android:layout_margin="16dp"/>
 
     <androidx.recyclerview.widget.RecyclerView

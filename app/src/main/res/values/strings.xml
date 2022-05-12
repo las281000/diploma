@@ -87,5 +87,8 @@
     <string name="hello_blank_fragment"> Пустой фрагемент</string>
 
     <!-- ////////////////////// StaffFragment labels ////////////////////////////// -->
-    <string name="new_employee">Добавить нового сотрудника</string>
+    <string name="new_employee_fragment_title">Добавить нового сотрудника</string>
+
+    <!-- UpdateDataFragment labels-->
+    <string name="update_fragment_title">Добавить нового сотрудника</string>
 </resources>

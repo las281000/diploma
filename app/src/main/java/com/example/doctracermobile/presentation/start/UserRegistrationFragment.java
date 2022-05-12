@@ -135,13 +135,6 @@ public class UserRegistrationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String title;
-        if(!newEmployeeFlag){
-            title = getActivity().getResources().getString(R.string.manager_reg_fragment_title);
-            getActivity().setTitle(title);
-        } else{
-
-        }
 
         confirmButton = (Button) getView().findViewById(R.id.reg_user_but_confirm);
         confirmButton.setOnClickListener(confirmButtListener);

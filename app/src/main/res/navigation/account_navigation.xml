@@ -54,6 +54,7 @@
     <fragment
         android:id="@+id/nav_access_to_updating"
         android:name="com.example.doctracermobile.presentation.account.AccessToUpdatingFragment"
+        android:label="@string/reg_last_step_title"
         tools:layout="@layout/fragment_access_to_updating">
         <action
             android:id="@+id/action_nav_accessing_to_nav_updating_userData"
@@ -63,7 +64,8 @@
     <fragment
         android:id="@+id/nav_update_userData"
         android:name="com.example.doctracermobile.presentation.account.UpdateDataFragment"
-        tools:layout="@layout/fragment_update_data" >
+        tools:layout="@layout/fragment_update_data"
+        android:label="@string/update_fragment_title">
         <action
             android:id="@+id/action_nav_updating_to_nav_profile"
             app:destination="@id/nav_profile" />
