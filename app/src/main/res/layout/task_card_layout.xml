@@ -1,49 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
     android:id="@+id/task_cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:cardView="http://schemas.android.com/apk/res-auto"
-    cardView:cardCornerRadius="10dp"
     android:layout_marginVertical="5dp"
-    cardView:cardBackgroundColor="@color/spring_green">
+    cardView:cardBackgroundColor="@color/spring_green"
+    cardView:cardCornerRadius="10dp">
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:stretchColumns="*">
 
-        <TextView
-            android:id="@+id/card_text_name"
-            android:layout_width="wrap_content"
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/card_task_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="Фамилия Имя Отчетсво"
-            android:textStyle="bold" />
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:id="@+id/card_task_idea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:textStyle="italic" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/card_text_position"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Должность"
-            android:textStyle="italic" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/card_task_creation_label"
+                android:textStyle="italic" />
+            <TextView
+                android:id="@+id/card_task_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/card_text_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Телефон"
-            android:textStyle="italic" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/card_task_creation_label"
+                android:textStyle="italic" />
+            <TextView
+                android:id="@+id/card_task_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/card_text_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Почта"
-            android:textStyle="italic" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/card_task_creator_label"
+                android:textStyle="italic" />
+            <TextView
+                android:id="@+id/card_task_creator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic" />
+        </TableRow>
 
-    </LinearLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/card_task_resp_label"
+                android:textStyle="italic" />
+            <TextView
+                android:id="@+id/card_task_responsible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic" />
+        </TableRow>
+
+    </TableLayout>
 
 </androidx.cardview.widget.CardView>

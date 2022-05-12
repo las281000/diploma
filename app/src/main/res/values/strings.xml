@@ -84,11 +84,24 @@
     <string name="new_password_label">Новый пароль</string>
     <string name="old_password_require">Введите текущий пароль, чтобы продолжить.</string>
 
-    <string name="hello_blank_fragment"> Пустой фрагемент</string>
+    <string name="hello_blank_fragment">Пустой фрагемент</string>
 
     <!-- ////////////////////// StaffFragment labels ////////////////////////////// -->
     <string name="new_employee_fragment_title">Добавить нового сотрудника</string>
 
     <!-- UpdateDataFragment labels-->
     <string name="update_fragment_title">Добавить нового сотрудника</string>
+
+    <!-- Task CardView and CreationTask Fragmentlabels -->
+    <string name="task_creation_title">Назанчение новой задачи</string>
+    <string name="task_creation_name_hint">Название задачи</string>
+    <string name="task_creation_idea_hint">Краткое описание задачи</string>
+    <string name="task_creation_deadline_hint">Дата сдачи задачи</string>
+    <string name="task_creation_resp_hint">Ответственный за задачу</string>
+    <string name="task_creation_btn_label">Создать</string>
+    <string name="card_task_creation_label">Задача создана </string>
+    <string name="card_task_deadline_label">Дата сдачи задачи</string>
+    <string name="card_task_resp_label">Ответственный</string>
+    <string name="card_task_creator_label">Задачу назначил</string>
+    <string name="task_creation_warning_label">Пока некому назначить задачу!</string>
 </resources>

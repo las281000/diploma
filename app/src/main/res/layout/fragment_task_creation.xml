@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.account.TaskCreationFragment"
+    android:padding="20dp"
+    android:background="@color/white">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:stretchColumns="*">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/create_task_edit_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/task_creation_name_hint"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/create_task_edit_idea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/task_creation_idea_hint"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="30dp">
+
+            <EditText
+                android:id="@+id/create_task_edit_creation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple"
+                android:enabled="false"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/create_task_edit_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/task_creation_deadline_hint"
+                android:inputType="date"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:text="@string/card_task_resp_label"
+                android:textColor="@color/grey"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <Spinner
+                android:id="@+id/create_task_spin_resp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/task_creation_name_hint"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple"
+                android:spinnerMode="dialog"
+                android:theme="@style/mySpinnerItemStyle"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="50dp">
+            <Button
+                android:id="@+id/create_task_btn_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/task_creation_btn_label"
+                android:background="@drawable/oval"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:id="@+id/create_task_text_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:text="@string/task_creation_warning_label"
+                android:visibility="invisible"/>
+        </TableRow>
+
+    </TableLayout>
+
+</FrameLayout>

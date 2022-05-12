@@ -90,15 +90,6 @@ public class ProjRegistrationFragment extends Fragment {
                 .findViewById(R.id.reg_project_edit_description))
                 .getText()
                 .toString();
-        String startDate = ((EditText) getView()
-                .findViewById(R.id.reg_project_date_start))
-                .getText()
-                .toString();
-
-        String endDate = ((EditText) getView()
-                .findViewById(R.id.reg_project_date_end))
-                .getText()
-                .toString();
 
         return new Project(name, description, start, end);
     }

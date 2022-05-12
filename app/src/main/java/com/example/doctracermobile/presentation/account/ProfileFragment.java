@@ -61,11 +61,6 @@ public class ProfileFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
-    private int getDaysLeft() {
-        int daysLeft = 0;
-
-        return daysLeft;
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
