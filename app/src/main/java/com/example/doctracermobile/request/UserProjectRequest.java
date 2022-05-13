@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JointUserProject {
+public class UserProjectRequest {
     private String projectName;
     private String description;
     private String startDate;
@@ -23,7 +23,7 @@ public class JointUserProject {
 
     @Override
     public String toString() {
-        return "JointUserProject{" +
+        return "UserProjectRequest{" +
                 ", projectName='" + projectName + '\'' +
                 ", description='" + description + '\'' +
                 ", startDate='" + startDate + '\'' +

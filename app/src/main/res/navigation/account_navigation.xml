@@ -95,6 +95,10 @@
         android:id="@+id/taskCreationFragment"
         android:name="com.example.doctracermobile.presentation.account.TaskCreationFragment"
         android:label="@string/task_creation_title"
-        tools:layout="@layout/fragment_task_creation" />
+        tools:layout="@layout/fragment_task_creation" >
+        <action
+            android:id="@+id/action_taskCreationFragment_to_nav_sent"
+            app:destination="@id/nav_sent" />
+    </fragment>
 
 </navigation>

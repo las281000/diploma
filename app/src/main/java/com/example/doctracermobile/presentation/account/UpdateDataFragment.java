@@ -23,8 +23,8 @@ import com.example.doctracermobile.entity.User;
 import com.example.doctracermobile.presentation.start.StartActivity;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.UserClient;
-import com.example.doctracermobile.request.JointUserProject;
-import com.example.doctracermobile.request.UserForRequest;
+import com.example.doctracermobile.request.UserProjectRequest;
+import com.example.doctracermobile.request.UserRequest;
 import com.example.doctracermobile.usecase.DataValidator;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -74,7 +74,7 @@ public class UpdateDataFragment extends Fragment {
             newUserData.setPhoneNumber(newUserData.getPhoneNumber()
                     .replaceAll(" ", "")
                     .replaceAll("-", ""));
-            UserForRequest updatedUser = new UserForRequest(newUserData.getName(),
+            UserRequest updatedUser = new UserRequest(newUserData.getName(),
                     newUserData.getSurname(),
                     newUserData.getPatronum(),
                     newUserData.getPosition(),
@@ -164,25 +164,25 @@ public class UpdateDataFragment extends Fragment {
         updateButton.setOnClickListener(editButtListener);
     }
 
-    private class UpdateTask extends AsyncTask<Void, Void, JointUserProject> {
+    private class UpdateTask extends AsyncTask<Void, Void, UserProjectRequest> {
         private final String oldEmail; //текущий логин
         private final String oldPassword; //текущий пароль
-        private UserForRequest newUserData; //новын данные
+        private UserRequest newUserData; //новын данные
 
-        private UpdateTask(String email, String password, UserForRequest newUserData) {
+        private UpdateTask(String email, String password, UserRequest newUserData) {
             this.oldEmail = email;
             this.oldPassword = password;
             this.newUserData = newUserData;
         }
 
         @Override
-        protected JointUserProject doInBackground(Void... voids) {
-            JointUserProject updatedUserCompany = UserClient.update(oldEmail, oldPassword, newUserData);
+        protected UserProjectRequest doInBackground(Void... voids) {
+            UserProjectRequest updatedUserCompany = UserClient.update(oldEmail, oldPassword, newUserData);
             return updatedUserCompany;
         }
 
         @Override
-        protected void onPostExecute(JointUserProject updatedUserCompany) {
+        protected void onPostExecute(UserProjectRequest updatedUserCompany) {
             super.onPostExecute(updatedUserCompany);
 
             if (updatedUserCompany == null) {

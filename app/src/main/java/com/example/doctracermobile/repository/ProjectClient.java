@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.example.doctracermobile.entity.Project;
 import com.example.doctracermobile.entity.User;
-import com.example.doctracermobile.request.JointUserProject;
+import com.example.doctracermobile.request.UserProjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -24,7 +24,7 @@ public class ProjectClient {
     private static final String regURL = "/public/project";
 
     public static boolean register(Project project, User user) {
-        JointUserProject jointUserProject = new JointUserProject(
+        UserProjectRequest userProjectRequest = new UserProjectRequest(
                 project.getName(),
                 project.getDescription(),
                 project.getStartDate().toString(),
@@ -37,7 +37,7 @@ public class ProjectClient {
                 user.getEmail(),
                 user.getPassword()
         );
-        String jsonObject = new Gson().toJson(jointUserProject);
+        String jsonObject = new Gson().toJson(userProjectRequest);
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(false)

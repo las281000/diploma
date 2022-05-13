@@ -23,7 +23,7 @@ import com.example.doctracermobile.entity.User;
 import com.example.doctracermobile.presentation.account.AccountActivity;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.UserClient;
-import com.example.doctracermobile.request.JointUserProject;
+import com.example.doctracermobile.request.UserProjectRequest;
 import com.example.doctracermobile.usecase.DataValidator;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -116,7 +116,7 @@ public class EntryFragment extends Fragment {
         buttRecovery.setOnClickListener(recoverListener);
     }
 
-    private class SignInTask extends AsyncTask<Void, Void, JointUserProject> {
+    private class SignInTask extends AsyncTask<Void, Void, UserProjectRequest> {
 
         private final String email;
         private final String password;
@@ -127,30 +127,30 @@ public class EntryFragment extends Fragment {
         }
 
         @Override
-        protected JointUserProject doInBackground(Void... voids) {
-            JointUserProject jointUserProject = UserClient.signIn(email, password);
-            return jointUserProject;
+        protected UserProjectRequest doInBackground(Void... voids) {
+            UserProjectRequest userProjectRequest = UserClient.signIn(email, password);
+            return userProjectRequest;
         }
 
         @Override
-        protected void onPostExecute(JointUserProject jointUserProject) {
-            super.onPostExecute(jointUserProject);
-            if (jointUserProject != null) {
-                jointUserProject.setPassword(password);
+        protected void onPostExecute(UserProjectRequest userProjectRequest) {
+            super.onPostExecute(userProjectRequest);
+            if (userProjectRequest != null) {
+                userProjectRequest.setPassword(password);
 
-                User user = new User(jointUserProject.getName(),
-                        jointUserProject.getSurname(),
-                        jointUserProject.getPatronum(),
-                        jointUserProject.getPosition(),
-                        jointUserProject.getPhoneNumber(),
-                        jointUserProject.getEmail(),
+                User user = new User(userProjectRequest.getName(),
+                        userProjectRequest.getSurname(),
+                        userProjectRequest.getPatronum(),
+                        userProjectRequest.getPosition(),
+                        userProjectRequest.getPhoneNumber(),
+                        userProjectRequest.getEmail(),
                         password);
 
                 Project project = new Project(
-                        jointUserProject.getProjectName(),
-                        jointUserProject.getDescription(),
-                        Instant.parse(jointUserProject.getStartDate()),
-                        Instant.parse(jointUserProject.getEndDate()));
+                        userProjectRequest.getProjectName(),
+                        userProjectRequest.getDescription(),
+                        Instant.parse(userProjectRequest.getStartDate()),
+                        Instant.parse(userProjectRequest.getEndDate()));
 
                 Preferences.savePreferences(preferences, user.getEmail(), user.getPassword());
 

@@ -23,7 +23,9 @@ import com.example.doctracermobile.R;
 import com.example.doctracermobile.entity.Employee;
 import com.example.doctracermobile.entity.Task;
 import com.example.doctracermobile.repository.Preferences;
+import com.example.doctracermobile.repository.TaskClient;
 import com.example.doctracermobile.repository.UserClient;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -46,14 +48,31 @@ public class TaskCreationFragment extends Fragment {
     private Instant deadline;
     private Calendar calendar;
 
-    private List employeeList;
+    private List<String> employeeList;//для спинера
+    private ArrayList<Employee> employees; //тут будут сами сотрудники со всеми их данными
 
+    private final View.OnClickListener createBtnListener = (v) -> {
+        Log.e("DATES", creationDate.toString());
+        Log.e("DATES", deadline.toString());
+        Task task = getTaskFromForm();
+        if (task.emptyFieldCheck()){
+            new CreateNewTask(task).execute();
+        } else{
+            Snackbar.make(createBtn,"Необходимо заполнить все поля!", Snackbar.LENGTH_LONG).show();
+        }
+
+    };
 
     private Task getTaskFromForm() {
         String name = nameEdit.getText().toString();
         String idea = ideaEdit.getText().toString();
 
-        return new Task(name, idea, creationDate, deadline, null, null);
+        responsibleSpinner.getSelectedItemPosition();
+        return new Task(name,
+                idea,
+                creationDate,
+                deadline,
+                employees.get(responsibleSpinner.getSelectedItemPosition()));
     }
 
     //создает диалог для выбора дедлайна
@@ -111,7 +130,7 @@ public class TaskCreationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createBtn = getView().findViewById(R.id.create_task_btn_create);
+
         nameEdit = getView().findViewById(R.id.create_task_edit_name);
         ideaEdit = getView().findViewById(R.id.create_task_edit_idea);
 
@@ -126,6 +145,9 @@ public class TaskCreationFragment extends Fragment {
         deadlineEdit.setOnClickListener(deadlineEditListener);
 
         responsibleSpinner = getView().findViewById(R.id.create_task_spin_resp);
+
+        createBtn = getView().findViewById(R.id.create_task_btn_create);
+        createBtn.setOnClickListener(createBtnListener);
 
         String login = Preferences.getLogin(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
         String password = Preferences.getPassword(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
@@ -143,14 +165,14 @@ public class TaskCreationFragment extends Fragment {
 
         @Override
         protected ArrayList<Employee> doInBackground(Void... voids) { //тут возвращаем уже список объектов Employee
-            return UserClient.getEmployees(email, password);
+            employees = UserClient.getEmployees(email, password);
+            return employees;
         }
 
         @Override
         protected void onPostExecute(ArrayList<Employee> employees) {
             super.onPostExecute(employees);
-            if (employees.size() != 0 ) {
-
+            if (employees.size() != 0) {
                 //составляем список из ФИО сотрудников
                 employeeList = new ArrayList<String>();
                 for (Employee empl : employees) {
@@ -171,6 +193,33 @@ public class TaskCreationFragment extends Fragment {
                 createBtn.setEnabled(false);
 
                 getView().findViewById(R.id.create_task_text_warning).setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    private class CreateNewTask extends AsyncTask<Void, Void, Boolean> {
+        private final Task task;
+
+        private CreateNewTask(Task task) {
+
+            this.task = task;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) { //тут возвращаем уже список объектов Employee
+            String login = Preferences.getLogin(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
+            String password = Preferences.getPassword(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
+
+            return TaskClient.create(task, login, password);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            if (result) {
+                ((AccountActivity)getActivity()).getNavController().navigate(R.id.action_taskCreationFragment_to_nav_sent);
+            } else {
+                Snackbar.make(createBtn,"Не удалось создать задачу", Snackbar.LENGTH_LONG).show();
             }
         }
     }

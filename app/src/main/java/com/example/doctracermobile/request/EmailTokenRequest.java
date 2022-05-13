@@ -1,10 +1,10 @@
 package com.example.doctracermobile.request;
 
-public class JointEmailToken {
+public class EmailTokenRequest {
     private String token;
     private String email;
 
-    public JointEmailToken(String token, String email) {
+    public EmailTokenRequest(String token, String email) {
         this.token = token;
         this.email = email;
     }
