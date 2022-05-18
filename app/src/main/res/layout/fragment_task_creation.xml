@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.account.TaskCreationFragment"
+    android:background="@color/white"
     android:padding="20dp"
-    android:background="@color/white">
+    tools:context=".presentation.account.TaskCreationFragment">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -47,17 +47,17 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:gravity="center">
 
             <EditText
                 android:id="@+id/create_task_edit_creation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:inputType="text"
                 android:textColor="@color/purple"
-                android:textColorHint="@color/pale_purple"
-                android:enabled="false"/>
+                android:textColorHint="@color/pale_purple" />
         </TableRow>
 
         <TableRow
@@ -78,57 +78,82 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:gravity="center">
 
             <TextView
                 android:text="@string/card_task_resp_label"
-                android:textColor="@color/grey"/>
+                android:textColor="@color/grey" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_gravity="center"
             android:gravity="center">
+
             <Spinner
                 android:id="@+id/create_task_spin_resp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/task_creation_name_hint"
-                android:inputType="text"
-                android:textColor="@color/purple"
-                android:textColorHint="@color/pale_purple"
                 android:spinnerMode="dialog"
-                android:theme="@style/mySpinnerItemStyle"
-                />
+                android:textColor="@color/purple"
+                android:theme="@style/mySpinnerItemStyle" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="30dp"
+            android:gravity="center">
+
+            <TextView
+                android:text="@string/card_task_priority_label"
+                android:textColor="@color/grey" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <Spinner
+                android:id="@+id/create_task_spin_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"
+                android:textColor="@color/purple"
+                android:theme="@style/mySpinnerItemStyle" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:gravity="center">
+
             <Button
                 android:id="@+id/create_task_btn_create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:background="@drawable/oval"
                 android:text="@string/task_creation_btn_label"
-                android:background="@drawable/oval"/>
+                android:textColor="@color/white" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:gravity="center">
+
             <TextView
                 android:id="@+id/create_task_text_warning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/red"
                 android:text="@string/task_creation_warning_label"
-                android:visibility="invisible"/>
+                android:textColor="@color/red"
+                android:visibility="invisible" />
         </TableRow>
 
     </TableLayout>

@@ -25,6 +25,7 @@ import com.example.doctracermobile.entity.Task;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.TaskClient;
 import com.example.doctracermobile.repository.UserClient;
+import com.example.doctracermobile.utile.TaskPriority;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
@@ -41,6 +42,7 @@ public class TaskCreationFragment extends Fragment {
     private EditText deadlineEdit;
     private Button createBtn;
     private Spinner responsibleSpinner;
+    private Spinner prioritySpinner;
     private EditText nameEdit;
     private EditText ideaEdit;
 
@@ -72,7 +74,8 @@ public class TaskCreationFragment extends Fragment {
                 idea,
                 creationDate,
                 deadline,
-                employees.get(responsibleSpinner.getSelectedItemPosition()));
+                employees.get(responsibleSpinner.getSelectedItemPosition()),
+                (TaskPriority) prioritySpinner.getSelectedItem());
     }
 
     //создает диалог для выбора дедлайна
@@ -144,14 +147,19 @@ public class TaskCreationFragment extends Fragment {
         deadlineEdit = getView().findViewById(R.id.create_task_edit_deadline);
         deadlineEdit.setOnClickListener(deadlineEditListener);
 
-        responsibleSpinner = getView().findViewById(R.id.create_task_spin_resp);
-
         createBtn = getView().findViewById(R.id.create_task_btn_create);
         createBtn.setOnClickListener(createBtnListener);
 
+        responsibleSpinner = getView().findViewById(R.id.create_task_spin_resp);
         String login = Preferences.getLogin(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
         String password = Preferences.getPassword(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
         new GetEmployeesTask(login, password).execute();
+
+        prioritySpinner = getView().findViewById(R.id.create_task_spin_priority);
+        ArrayAdapter <TaskPriority> adapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                TaskPriority.values());
+        prioritySpinner.setAdapter(adapter);
     }
 
     private class GetEmployeesTask extends AsyncTask<Void, Void, ArrayList<Employee>> {
@@ -180,8 +188,8 @@ public class TaskCreationFragment extends Fragment {
                 }
 
                 //адаптер спинера
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_spinner_item,
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                        android.R.layout.simple_spinner_dropdown_item,
                         employeeList);
                 responsibleSpinner.setAdapter(adapter);
             } else {

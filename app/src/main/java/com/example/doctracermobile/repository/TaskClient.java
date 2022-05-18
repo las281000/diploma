@@ -29,7 +29,8 @@ public class TaskClient {
                 task.getIdea(),
                 task.getCreationDate().toString(),
                 task.getDeadline().toString(),
-                task.getResponsible());
+                task.getResponsible(),
+                task.getTaskPriority());
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .authenticator(new CustomAuthenticator(login, password))

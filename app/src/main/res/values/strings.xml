@@ -93,7 +93,8 @@
     <string name="update_fragment_title">Добавить нового сотрудника</string>
 
     <!-- Task CardView and CreationTask Fragmentlabels -->
-    <string name="task_creation_title">Назанчение новой задачи</string>
+    <string name="task_creation_title">Назначение новой задачи</string>
+
     <string name="task_creation_name_hint">Название задачи</string>
     <string name="task_creation_idea_hint">Краткое описание задачи</string>
     <string name="task_creation_deadline_hint">Дата сдачи задачи</string>
@@ -103,5 +104,6 @@
     <string name="card_task_deadline_label">Дата сдачи задачи</string>
     <string name="card_task_resp_label">Ответственный</string>
     <string name="card_task_creator_label">Задачу назначил</string>
+    <string name="card_task_priority_label">Приоритет задачи</string>
     <string name="task_creation_warning_label">Пока некому назначить задачу!</string>
 </resources>

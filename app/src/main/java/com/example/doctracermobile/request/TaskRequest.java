@@ -1,6 +1,7 @@
 package com.example.doctracermobile.request;
 
 import com.example.doctracermobile.entity.Employee;
+import com.example.doctracermobile.utile.TaskPriority;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,4 +18,5 @@ public class TaskRequest {
     String creation;
     String deadline;
     Employee responsible;
+    TaskPriority priority;
 }
