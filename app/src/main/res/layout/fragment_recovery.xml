@@ -53,7 +53,7 @@
                 android:id="@+id/recover_butt_send"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/oval"
+                android:background="@drawable/oval_purple"
                 android:text="@string/recovery_label"
                 android:textColor="@color/white" />
         </TableRow>

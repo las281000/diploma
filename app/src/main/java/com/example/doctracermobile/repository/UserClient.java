@@ -163,6 +163,7 @@ public class UserClient {
             }
             String responseJSON = response.body().string().replace("{\"employees\":", "");
             responseJSON = responseJSON.substring(0,responseJSON.length()-1);
+            Log.e(TAG+"_LIST", responseJSON);
             ArrayList list = new ArrayList<> (Arrays.asList(new Gson().fromJson(responseJSON, Employee[].class)));
             Log.e(TAG+"_LIST", String.valueOf(list.size()));
             return list;

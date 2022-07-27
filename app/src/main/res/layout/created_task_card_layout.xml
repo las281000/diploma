@@ -3,11 +3,11 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardView="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/task_cardView"
+    android:id="@+id/created_task_cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="5dp"
-    cardView:cardBackgroundColor="@color/spring_green"
+    cardView:cardBackgroundColor="@color/light_grey"
     cardView:cardCornerRadius="10dp">
 
     <TableLayout
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/card_task_name"
+                android:id="@+id/created_card_task_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_span="2"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp">
             <TextView
-                android:id="@+id/card_task_idea"
+                android:id="@+id/created_card_task_idea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_span="2"
@@ -48,7 +48,7 @@
                 android:text="@string/card_task_creation_label"
                 android:textStyle="italic" />
             <TextView
-                android:id="@+id/card_task_phone"
+                android:id="@+id/created_card_task_creation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="italic" />
@@ -60,10 +60,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/card_task_creation_label"
+                android:text="@string/card_task_deadline_label"
                 android:textStyle="italic" />
             <TextView
-                android:id="@+id/card_task_deadline"
+                android:id="@+id/created_card_task_deadline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="italic" />
@@ -78,7 +78,7 @@
                 android:text="@string/card_task_creator_label"
                 android:textStyle="italic" />
             <TextView
-                android:id="@+id/card_task_creator"
+                android:id="@+id/created_card_task_creator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="italic" />
@@ -93,7 +93,37 @@
                 android:text="@string/card_task_resp_label"
                 android:textStyle="italic" />
             <TextView
-                android:id="@+id/card_task_responsible"
+                android:id="@+id/created_card_task_responsible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/card_task_priority_label"
+                android:textStyle="italic" />
+            <TextView
+                android:id="@+id/created_card_task_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/card_task_status_label"
+                android:textStyle="italic" />
+            <TextView
+                android:id="@+id/created_card_task_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="italic" />

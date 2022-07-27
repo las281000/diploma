@@ -54,8 +54,6 @@ public class TaskCreationFragment extends Fragment {
     private ArrayList<Employee> employees; //тут будут сами сотрудники со всеми их данными
 
     private final View.OnClickListener createBtnListener = (v) -> {
-        Log.e("DATES", creationDate.toString());
-        Log.e("DATES", deadline.toString());
         Task task = getTaskFromForm();
         if (task.emptyFieldCheck()){
             new CreateNewTask(task).execute();
@@ -69,13 +67,15 @@ public class TaskCreationFragment extends Fragment {
         String name = nameEdit.getText().toString();
         String idea = ideaEdit.getText().toString();
 
-        responsibleSpinner.getSelectedItemPosition();
         return new Task(name,
                 idea,
                 creationDate,
                 deadline,
                 employees.get(responsibleSpinner.getSelectedItemPosition()),
-                (TaskPriority) prioritySpinner.getSelectedItem());
+                null,
+                (TaskPriority) prioritySpinner.getSelectedItem(),
+                null,
+                null);
     }
 
     //создает диалог для выбора дедлайна

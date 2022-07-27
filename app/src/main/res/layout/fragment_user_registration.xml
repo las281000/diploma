@@ -161,7 +161,7 @@
                 android:id="@+id/reg_user_but_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/oval"
+                android:background="@drawable/oval_purple"
                 android:text="@string/next_label"
                 android:textColor="@color/white" />
         </TableRow>

@@ -52,7 +52,7 @@
                 android:id="@+id/confirm_butt_finish"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/oval"
+                android:background="@drawable/oval_purple"
                 android:text="@string/reg_finish"
                 android:textColor="@color/white" />
         </TableRow>

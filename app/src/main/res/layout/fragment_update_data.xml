@@ -165,7 +165,7 @@
             android:layout_height="wrap_content"
             android:text="@string/change_user_data"
             android:textColor="@color/white"
-            android:background="@drawable/oval">
+            android:background="@drawable/oval_purple">
         </Button>
     </TableRow>
 

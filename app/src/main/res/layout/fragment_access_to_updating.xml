@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:text="@string/next_label"
             android:textColor="@color/white"
-            android:background="@drawable/oval"/>
+            android:background="@drawable/oval_purple"/>
     </TableRow>
 
 

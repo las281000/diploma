@@ -71,7 +71,7 @@
                 android:id="@+id/entry_butt_signIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/oval"
+                android:background="@drawable/oval_purple"
                 android:text="@string/signIn_label"
                 android:textColor="@color/white" />
         </TableRow>
@@ -85,7 +85,7 @@
                 android:id="@+id/entry_butt_signUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/oval"
+                android:background="@drawable/oval_purple"
                 android:paddingHorizontal="@dimen/butt_horizontal_padding"
                 android:text="@string/com_reg_title"
                 android:textColor="@color/white" />

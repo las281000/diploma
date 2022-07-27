@@ -8,13 +8,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.doctracermobile.R;
+import com.example.doctracermobile.utile.TaskPageAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SentFragment extends Fragment {
 
     FloatingActionButton newTaskBtn;
+    TaskPageAdapter pageAdapter;
+    ViewPager2 viewPager;
 
     private final View.OnClickListener newTaskBtnListener = (v) ->{
         ((AccountActivity) getActivity())
@@ -46,5 +51,14 @@ public class SentFragment extends Fragment {
 
         newTaskBtn = getView().findViewById(R.id.sent_newTask_fab);
         newTaskBtn.setOnClickListener(newTaskBtnListener);
+
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        pageAdapter = new TaskPageAdapter(fm);
+
+        viewPager = getView().findViewById(R.id.sent_view_pager);
+        viewPager.setAdapter(pageAdapter);
+        viewPager.setCurrentItem(0);
     }
+
+
 }

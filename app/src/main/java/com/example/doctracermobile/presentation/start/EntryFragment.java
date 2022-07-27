@@ -92,8 +92,6 @@ public class EntryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String title = getActivity().getResources().getString(R.string.app_name_title);
-        ((StartActivity)getActivity()).setTitle(title);
 
         //добываем сохраненный пароль и логин
         preferences = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);

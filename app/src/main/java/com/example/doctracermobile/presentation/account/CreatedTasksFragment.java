@@ -19,66 +19,81 @@ import com.example.doctracermobile.R;
 import com.example.doctracermobile.entity.Task;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.TaskClient;
-import com.example.doctracermobile.utile.AssignedTasksListAdapter;
+import com.example.doctracermobile.utile.CreatedTasksListAdapter;
+import com.example.doctracermobile.utile.TaskStatus;
 
 import java.util.List;
 
-public class ReceivedFragment extends Fragment {
-
+public class CreatedTasksFragment extends Fragment {
     RecyclerView tasksList;
+    String status;
 
-    public ReceivedFragment() {
+    public CreatedTasksFragment() {
         // Required empty public constructor
+    }
+
+    public static CreatedTasksFragment newInstance(int position) {
+        CreatedTasksFragment fragment = new CreatedTasksFragment();
+        Bundle args = new Bundle();
+        if (position == 0) {
+            args.putString("STATUS", TaskStatus.CREATED.toString());
+        } else {
+            args.putString("STATUS", TaskStatus.CLOSED.toString());
+        }
+
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
+           status = getArguments().getString("STATUS");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_received, container, false);
+        return inflater.inflate(R.layout.fragment_created_tasks, container, false);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        tasksList = getView().findViewById(R.id.task_created_rv);
 
-        tasksList = getView().findViewById(R.id.assigned_rv);
         String login = Preferences.getLogin(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
         String password = Preferences.getPassword(getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE));
 
-        new GetAssignedTask(login, password).execute();
+        new GetCreatedTask(login, password).execute();
     }
 
-    private class GetAssignedTask extends AsyncTask<Void, Void, List<Task>> {
+    private class GetCreatedTask extends AsyncTask<Void, Void, List<Task>> {
         private final String email;
         private final String password;
 
-        private GetAssignedTask(String email, String password) {
+        private GetCreatedTask(String email, String password) {
             this.email = email;
             this.password = password;
         }
 
         @Override
         protected List<Task> doInBackground(Void... voids) { //тут возвращаем уже список объектов Employee
-            return TaskClient.getAssignedTasks(email, password);
+            if (status.equals("ОТКРЫТО")){
+                return TaskClient.getCreatedTasks(email, password);
+            }
+            return TaskClient.getClosedTasks(email, password);
         }
 
         @Override
-        protected void onPostExecute(List<Task> assignedTasks) {
-            super.onPostExecute(assignedTasks);
-            if (assignedTasks != null){
+        protected void onPostExecute(List<Task> createdTasks) {
+            super.onPostExecute(createdTasks);
+            if (createdTasks != null) {
                 tasksList.setLayoutManager(new LinearLayoutManager(getContext()));
-                AssignedTasksListAdapter adapter = new AssignedTasksListAdapter(assignedTasks, email, password);
-                adapter.notifyDataSetChanged();
-                tasksList.setAdapter(adapter);
+                tasksList.setAdapter(new CreatedTasksListAdapter(createdTasks));
             } else {
                 tasksList.setVisibility(View.GONE);
             }

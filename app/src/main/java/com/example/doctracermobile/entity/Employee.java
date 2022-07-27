@@ -17,7 +17,11 @@ public class Employee {
     private String phone;       //Телефон
     private String email;    //Логин (эл.почта)
 
-    public String getFullName(){
+    public String getFullName() {
         return surname + " " + name + " " + patronum;
+    }
+
+    public String getInitials() {
+        return surname + " " + name.charAt(0) + "." + " " + patronum.charAt(0) + ".";
     }
 }

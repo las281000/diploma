@@ -4,26 +4,34 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/drawable/app_background.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/drawable/ic_settings_theme.xml" value="0.1085" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/drawable/oval.xml" value="0.114" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/drawable/oval_green.xml" value="0.1085" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/drawable/oval_purple.xml" value="0.1085" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/drawable/side_nav_bar.xml" value="0.114" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_account.xml" value="0.17844202898550723" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_account_recovery.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_com_registration.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_confirm_email.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_head_registration.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_splash.xml" value="0.13360507246376813" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/activity_start.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/app_bar_account.xml" value="0.14719202898550723" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/app_bar_lk_profile.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/content_lk_profile.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/content_profile.xml" value="0.14719202898550723" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/created_task_card_layout.xml" value="0.22" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/employee_card_layout.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_access_edit.xml" value="0.1" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_access_to_updating.xml" value="0.16168478260869565" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_closed_tasks.xml" value="0.15081521739130435" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_com_registration_form.xml" value="0.1585144927536232" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_created_tasks.xml" value="0.1480978260869565" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_edit_data.xml" value="0.22" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_email_confirmation.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_entry.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_info.xml" value="0.1" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_opened_tasks.xml" value="0.15081521739130435" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_org_registration.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_profile.xml" value="0.24959481361426256" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/fragment_project_registration.xml" value="0.24444444444444444" />
@@ -39,7 +47,8 @@
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/list_item_layout.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/nav_header_account.xml" value="0.14719202898550723" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/nav_header_lk_profile.xml" value="0.1" />
-        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/task_card_layout.xml" value="0.1796875" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/opened_task_card_layout.xml" value="0.36628849270664504" />
+        <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/layout/task_card_layout.xml" value="0.22" />
         <entry key="..\:/Users/las28/AndroidStudioProjects/DocTracerMobile/app/src/main/res/menu/activity_main_drawer.xml" value="0.17692307692307693" />
         <entry key="..\:/Users/las28/AppData/Local/Android/Sdk/platforms/android-30/data/res/layout/simple_spinner_item.xml" value="0.1796875" />
       </map>

@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.account.ReceivedFragment"
+    tools:context=".presentation.account.CreatedTasksFragment"
     android:padding="5dp">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/assigned_rv"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/task_created_rv"/>
 
 </FrameLayout>

@@ -1,6 +1,6 @@
 <resources>
     <!-- EntryFragment labels -->
-    <string name="app_name_title">DocTracer Mobile</string>
+    <string name="app_name_title">Project Control</string>
     <string name="email_label">Электронная почта</string>
     <string name="password_label">Пароль</string>
     <string name="signIn_label">Войти</string>
@@ -90,7 +90,7 @@
     <string name="new_employee_fragment_title">Добавить нового сотрудника</string>
 
     <!-- UpdateDataFragment labels-->
-    <string name="update_fragment_title">Добавить нового сотрудника</string>
+    <string name="update_fragment_title">Изменение данных</string>
 
     <!-- Task CardView and CreationTask Fragmentlabels -->
     <string name="task_creation_title">Назначение новой задачи</string>
@@ -100,10 +100,14 @@
     <string name="task_creation_deadline_hint">Дата сдачи задачи</string>
     <string name="task_creation_resp_hint">Ответственный за задачу</string>
     <string name="task_creation_btn_label">Создать</string>
+    <string name="task_creation_warning_label">Пока некому назначить задачу!</string>
+
     <string name="card_task_creation_label">Задача создана </string>
     <string name="card_task_deadline_label">Дата сдачи задачи</string>
     <string name="card_task_resp_label">Ответственный</string>
     <string name="card_task_creator_label">Задачу назначил</string>
     <string name="card_task_priority_label">Приоритет задачи</string>
-    <string name="task_creation_warning_label">Пока некому назначить задачу!</string>
+    <string name="card_task_status_label">Статус задачи</string>
+
+
 </resources>

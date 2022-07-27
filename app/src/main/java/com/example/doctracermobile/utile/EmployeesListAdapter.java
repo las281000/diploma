@@ -1,4 +1,4 @@
-package com.example.doctracermobile.usecase;
+package com.example.doctracermobile.utile;
 
 import android.view.LayoutInflater;
 import android.view.View;

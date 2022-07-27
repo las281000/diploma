@@ -136,7 +136,7 @@
                 android:id="@+id/create_task_btn_create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/oval"
+                android:background="@drawable/oval_purple"
                 android:text="@string/task_creation_btn_label"
                 android:textColor="@color/white" />
         </TableRow>

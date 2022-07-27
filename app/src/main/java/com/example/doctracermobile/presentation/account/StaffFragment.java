@@ -19,7 +19,7 @@ import com.example.doctracermobile.R;
 import com.example.doctracermobile.entity.Employee;
 import com.example.doctracermobile.repository.Preferences;
 import com.example.doctracermobile.repository.UserClient;
-import com.example.doctracermobile.usecase.EmployeesListAdapter;
+import com.example.doctracermobile.utile.EmployeesListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -83,7 +83,7 @@ public class StaffFragment extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<Employee> employees) {
             super.onPostExecute(employees);
-            if (!employees.equals(null)){
+            if (employees != null){
                 employeesList.setLayoutManager(new LinearLayoutManager(getContext()));
                 employeesList.setAdapter(new EmployeesListAdapter(employees));
             } else {

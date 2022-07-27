@@ -113,7 +113,7 @@
                 android:id="@+id/reg_project_but_next"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/oval"
+                android:background="@drawable/oval_purple"
                 android:text="@string/next_label"
                 android:textColor="@color/white"
                 android:paddingHorizontal="@dimen/butt_horizontal_padding"/>
