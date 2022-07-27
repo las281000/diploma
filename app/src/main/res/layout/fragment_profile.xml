@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="top"
     android:padding="10dp"
-    tools:context=".presentation.fragment.ProfileFragment"
-    android:stretchColumns="2">
+    tools:context=".presentation.account.ProfileFragment"
+    android:stretchColumns="*">
 
     <TableRow
         android:layout_width="match_parent"
@@ -16,10 +16,10 @@
         android:gravity="left">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="50dp"
-            android:layout_marginRight="40dp">
+            android:layout_marginEnd="100dp">
             <ImageView
                 android:id="@+id/bar_profile_photo"
                 android:layout_width="100dp"
@@ -114,15 +114,31 @@
             android:layout_span="3"/>
     </TableRow>
 
+<!-- /////////////// Информация о проекте //////////////////////////-->
     <TableRow
         android:layout_marginVertical="5dp">
         <TextView
-            android:text="@string/profile_org_name"
+            android:text="@string/profile_proj_name"
             android:textColor="@color/grey"/>
 
         <TextView
             android:layout_span="2"
-            android:id="@+id/profile_org_name"
+            android:id="@+id/profile_proj_name"
+            android:textColor="@color/dark_purple"
+            android:text="---"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginVertical="5dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="@string/profile_proj_description"
+            android:textColor="@color/grey"/>
+
+        <TextView
+            android:layout_span="2"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_proj_description"
             android:textColor="@color/dark_purple"
             android:text="---"/>
     </TableRow>
@@ -130,39 +146,29 @@
     <TableRow
         android:layout_marginVertical="5dp">
         <TextView
-            android:text="@string/profile_org_country"
-            android:textColor="@color/grey"/>
-
-        <TextView
-            android:layout_span="2"
-            android:id="@+id/profile_org_country"
-            android:textColor="@color/dark_purple"
-            android:text="---"/>
-    </TableRow>
-
-    <TableRow
-        android:layout_marginVertical="5dp">
-        <TextView
-            android:text="@string/profile_org_address"
+            android:text="@string/profile_proj_start"
             android:textColor="@color/grey" />
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_span="2"
-            android:id="@+id/profile_org_address"
-            android:textColor="@color/dark_purple"
+            android:id="@+id/profile_proj_text_start"
+            android:textColor="@color/grey"
+            android:textStyle="italic"
             android:text="---"/>
     </TableRow>
 
     <TableRow
         android:layout_marginVertical="5dp">
         <TextView
-            android:text="@string/profile_org_inn"
-            android:textColor="@color/grey"/>
+            android:layout_height="wrap_content"
+            android:text="@string/profile_proj_end"
+            android:textColor="@color/grey"
+            android:paddingEnd="10dp"/>
 
         <TextView
             android:layout_span="2"
-            android:id="@+id/profile_org_inn"
+            android:id="@+id/profile_proj_text_end"
             android:textColor="@color/grey"
             android:text="---"
             android:textStyle="italic"/>
@@ -171,12 +177,13 @@
     <TableRow
         android:layout_marginVertical="5dp">
         <TextView
-            android:text="@string/profile_org_ogrn"
+            android:id="@+id/profile_proj_days_left_label"
+            android:text="@string/profile_proj_days_left"
             android:textColor="@color/grey" />
 
         <TextView
             android:layout_span="2"
-            android:id="@+id/profile_org_ogrn"
+            android:id="@+id/profile_proj_days_left"
             android:textColor="@color/grey"
             android:textStyle="italic"
             android:text="---" />

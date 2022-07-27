@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.start.ProjRegistrationFragment">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_project_edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/proj_name_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_project_edit_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/proj_description_label"
+                android:inputType="text"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple" />
+        </TableRow>
+
+        <!-- ///////////////////////////////////// DATES ////////////////////////////-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="30dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/proj_date_start_label"
+                android:textColor="@color/grey"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/reg_project_date_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple"
+                android:hint="@string/date_format"
+                android:textColorHint="@color/pale_purple"
+                android:inputType="date"
+                android:enabled="true"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="30dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/proj_date_end_label"
+                android:textColor="@color/grey" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="10dp">
+
+            <EditText
+                android:id="@+id/reg_project_date_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple"
+                android:inputType="date"
+                android:hint="@string/date_format"
+                android:textColorHint="@color/pale_purple"
+                android:enabled="true"/>
+        </TableRow>
+        <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="40dp">
+
+            <Button
+                android:id="@+id/reg_project_but_next"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/oval_purple"
+                android:text="@string/next_label"
+                android:textColor="@color/white"
+                android:paddingHorizontal="@dimen/butt_horizontal_padding"/>
+        </TableRow>
+
+    </TableLayout>
+</FrameLayout>

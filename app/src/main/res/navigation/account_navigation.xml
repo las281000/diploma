@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_profile">
+
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.doctracermobile.presentation.account.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_nav_profile_to_nav_access_update"
+            app:destination="@id/nav_access_to_updating" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_staff"
+        android:name="com.example.doctracermobile.presentation.account.StaffFragment"
+        android:label="@string/menu_staff"
+        tools:layout="@layout/fragment_staff">
+        <action
+            android:id="@+id/action_nav_staff_to_userRegistrationFragment2"
+            app:destination="@id/userRegistrationFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_sent"
+        android:name="com.example.doctracermobile.presentation.account.SentFragment"
+        android:label="@string/menu_sent_tasks"
+        tools:layout="@layout/fragment_sent">
+        <action
+            android:id="@+id/action_nav_sent_to_taskCreationFragment"
+            app:destination="@id/taskCreationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_received"
+        android:name="com.example.doctracermobile.presentation.account.ReceivedFragment"
+        android:label="@string/menu_received_tasks"
+        tools:layout="@layout/fragment_received" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.doctracermobile.presentation.account.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_info"
+        android:name="com.example.doctracermobile.presentation.account.InfoFragment"
+        android:label="@string/menu_info"
+        tools:layout="@layout/fragment_info" />
+
+    <fragment
+        android:id="@+id/nav_access_to_updating"
+        android:name="com.example.doctracermobile.presentation.account.AccessToUpdatingFragment"
+        android:label="@string/update_fragment_title"
+        tools:layout="@layout/fragment_access_to_updating">
+        <action
+            android:id="@+id/action_nav_accessing_to_nav_updating_userData"
+            app:destination="@id/nav_update_userData" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_update_userData"
+        android:name="com.example.doctracermobile.presentation.account.UpdateDataFragment"
+        android:label="@string/update_fragment_title"
+        tools:layout="@layout/fragment_update_data">
+        <action
+            android:id="@+id/action_nav_updating_to_nav_profile"
+            app:destination="@id/nav_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRegistrationFragment2"
+        android:name="com.example.doctracermobile.presentation.start.UserRegistrationFragment"
+        android:label="@string/employee_reg_title"
+        tools:layout="@layout/fragment_user_registration">
+        <action
+            android:id="@+id/action_userRegistrationFragment2_to_emailConfirmationFragment2"
+            app:destination="@id/emailConfirmationFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailConfirmationFragment2"
+        android:name="com.example.doctracermobile.presentation.start.EmailConfirmationFragment"
+        android:label="@string/update_fragment_title"
+        tools:layout="@layout/fragment_email_confirmation">
+        <action
+            android:id="@+id/action_emailConfirmationFragment2_to_nav_staff"
+            app:destination="@id/nav_staff" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskCreationFragment"
+        android:name="com.example.doctracermobile.presentation.account.TaskCreationFragment"
+        android:label="@string/task_creation_title"
+        tools:layout="@layout/fragment_task_creation" >
+        <action
+            android:id="@+id/action_taskCreationFragment_to_nav_sent"
+            app:destination="@id/nav_sent" />
+    </fragment>
+
+</navigation>

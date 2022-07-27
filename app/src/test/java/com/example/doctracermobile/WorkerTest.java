@@ -1,5 +1,5 @@
 package com.example.doctracermobile;
-import com.example.doctracermobile.entity.Worker;
+import com.example.doctracermobile.entity.Employee;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class WorkerTest {
     private String expectedRes;
-    private Worker alex = new Worker("Александра",
+    private Employee alex = new Employee("Александра",
                                   "Лаухина",
                                  "Сергеевна",
                                   "Мобильный разработчик",

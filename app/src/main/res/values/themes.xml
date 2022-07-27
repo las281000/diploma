@@ -1,13 +1,24 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Base application theme. -->
-    <style
-        name="Theme.DocTracerMobile"
-        parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Theme.DocTracerMobile" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/purple</item>
         <item name="colorPrimaryDark">@color/dark_purple</item>
         <item name="colorAccent">@color/purple</item>
         <item name="android:textSize">@dimen/normal_text</item>
+    </style>
+
+    <style name="Theme.DocTracerMobile.Fullscreen" parent="Theme.DocTracerMobile">
+        <item name="android:actionBarStyle">
+            @style/Widget.Theme.DocTracerMobile.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.DocTracerMobile.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
 
 </resources>

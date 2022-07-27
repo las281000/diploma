@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".presentation.account.AccessToUpdatingFragment"
+    android:id="@+id/access_edit_fragment">
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/old_password_require"
+            android:textColor="@color/dark_purple" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/access_edit_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/staff_password_label"
+                android:inputType="textPassword"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/pale_purple">
+            </EditText>
+        </com.google.android.material.textfield.TextInputLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <Button
+            android:id="@+id/access_butt_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/next_label"
+            android:textColor="@color/white"
+            android:background="@drawable/oval_purple"/>
+    </TableRow>
+
+
+</TableLayout>

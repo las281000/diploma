@@ -77,7 +77,6 @@
             android:background="@color/red"
             android:text="@string/exit"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:onClick="onClick_exit"/>
+            android:textColor="@color/white" />
 
 </LinearLayout>
